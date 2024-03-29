@@ -336,7 +336,7 @@ namespace MyConsoleApp
 
         static void Main(string[] args)
         {
-            int lsRightEx = 0;
+            bool lsRightEx = false;
             do
             {
                 Console.Clear();
@@ -361,6 +361,7 @@ namespace MyConsoleApp
 
                 if (lsExNum.Length == 0) {
                     Console.WriteLine("Empty");
+                    Console.ReadLine();
                     continue;
                         }
                 lsNum = int.Parse(lsExNum);
@@ -369,9 +370,8 @@ namespace MyConsoleApp
                 switch (lsNum)
                 {
                     case 0:
-                        lsRightEx = 2;
+                        lsRightEx = true;
                         break;
-
 
                     case 1:
                         Console.Clear();
@@ -444,21 +444,16 @@ namespace MyConsoleApp
 
 
                     default:
-                        lsRightEx = 1;
+                        Console.WriteLine("Enter Exercise Number From 1 to 10");
+                        Console.ReadLine();
                         break;
 
                 }
-                if (lsRightEx == 1)
-                {
-                    Console.WriteLine("Enter Exercise Number From 1 to 10");
-                    Console.ReadLine();
-
-                }
-
+     
               
                 Console.Clear();
              
-            } while (lsRightEx!=2);
+            } while (lsRightEx!=true);
          
 
 
