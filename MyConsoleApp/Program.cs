@@ -91,7 +91,7 @@ namespace MyConsoleApp
 
             Console.ReadLine();
         }
-        static void ReverseStringAndPalindrom()
+        static void ReverseStringAndPalindrome()
         {
             string lsStr;
             string lsRevStr = "";
@@ -346,15 +346,15 @@ namespace MyConsoleApp
                 Console.WriteLine("Enter a Exericse Number:-");
                 Console.WriteLine("1. Add Two Number ");
                 Console.WriteLine("2. CheckNumberGreater");
-                Console.WriteLine("3.UpperCase ");
+                Console.WriteLine("3. UpperCase ");
                 Console.WriteLine("4. AddTwoNumber_1");
-                Console.WriteLine("5.IterationString ");
-                Console.WriteLine("6.PrintZeroToNine");
-                Console.WriteLine("7.SeperateAlphaAndNumber");
-                Console.WriteLine("8.SeperateVowelAndConso ");
-                Console.WriteLine("9.ReverseStringAndPalindrom ");
-                Console.WriteLine("10.ValidationForNumeric ");
-                Console.WriteLine("For Exit Press 0");
+                Console.WriteLine("5. IterationString ");
+                Console.WriteLine("6. PrintZeroToNine");
+                Console.WriteLine("7. SeperateAlphaAndNumber");
+                Console.WriteLine("8. SeperateVowelAndConso");
+                Console.WriteLine("9. ReverseStringAndPalindrome ");
+                Console.WriteLine("10. ValidationForNumeric ");
+                Console.WriteLine("     For Exit Press 0");
 
                 lsExNum = Console.ReadLine();
 
@@ -431,8 +431,8 @@ namespace MyConsoleApp
 
                     case 9:
                         Console.Clear();
-                        Console.WriteLine("ReverseStringAndPalindrom ");
-                        ReverseStringAndPalindrom();
+                        Console.WriteLine("ReverseStringAndPalindrome ");
+                        ReverseStringAndPalindrome();
                         break;
 
 
@@ -452,13 +452,13 @@ namespace MyConsoleApp
                 {
                     Console.WriteLine("Enter Exercise Number From 1 to 10");
                     Console.ReadLine();
-                  
+
                 }
-                if (lsRightEx == 2)
-                    break;
+
               
                 Console.Clear();
-            } while (true);
+             
+            } while (lsRightEx!=2);
          
 
 
