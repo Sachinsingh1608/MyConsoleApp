@@ -1,10 +1,242 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 
 namespace MyConsoleApp
 {
     internal class Program
     {
+        public static void SumOfOddEven(int InNum)
+        {
+            int lnEvenSum = 0;
+            int lnOddSum = 0;
+            for (int lnCnt = 0; lnCnt <= InNum; lnCnt++)
+            {
+                if ((lnCnt & 1) == 0)
+                    lnEvenSum += lnCnt;
+
+                else
+                {
+                    lnOddSum += lnCnt;
+                }
+            }
+            Console.WriteLine("Even Sum is {0} and Odd sum is {1} ",lnEvenSum, lnOddSum);
+            Console.ReadLine();
+        }
+        public static string ConvertLowercase(string str)
+        {
+            string lsStr = "";
+            for(int i=0; i<str.Length; i++)
+            {
+                if (str[i] >= 'A' && str[i] <= 'Z')
+                    lsStr += (char)(str[i] + 32);
+                else
+                    lsStr += str[i];
+            }
+
+            return lsStr;
+        }
+        public static void TitleSentence()
+        {
+            Console.WriteLine("Enter A string");
+            string lsLowerCase  = ConvertLowercase(Console.ReadLine());
+           //'0   Console.WriteLine(lsLowerCase);
+            string lsStr = LRTrim(lsLowerCase);
+           
+            string lsAnsStr = "";
+            string lsAnsStr2 = "";
+
+            string lstemp1 = "";
+
+           
+
+
+            for (int lnCnt  = 0; lnCnt < lsStr.Length; lnCnt++)
+            {
+                
+                if (lsStr[lnCnt] == ' ')
+                {
+                    string lstemp2 = "";
+                   
+                    for(int lnCnt2 = 0;lnCnt2 < lstemp1.Length;lnCnt2++)
+                    {
+                        if(lnCnt2 == 0)
+                        {
+                            lstemp2 += (char)(lstemp1[lnCnt2] - 32);
+                        }
+                        else
+                        {
+                            lstemp2 += lstemp1[lnCnt2];
+                        }
+                    }
+                    lsAnsStr += lstemp2 + ' ';
+                    lstemp1 = "";
+                }
+                else if (lsStr[lnCnt] == '.')
+                {
+                    string lstemp2 = "";
+                    for (int lnCnt2 = 0; lnCnt2 < lstemp1.Length; lnCnt2++)
+                    {
+                        if (lnCnt2 == 0)
+                        {
+                            lstemp2 += (char)(lstemp1[lnCnt2] - 32);
+                        }
+                        else
+                        {
+                            lstemp2 += lstemp1[lnCnt2];
+                        }
+                    }
+                    lsAnsStr += lstemp2 + ' ';
+                    lstemp1 = "";
+                }
+                else if (lnCnt == lsStr.Length-1)
+                {
+                    string lstemp2 = "";
+                    for (int lnCnt2 = 0; lnCnt2 < lstemp1.Length; lnCnt2++)
+                    {
+                        if (lnCnt2 == 0)
+                        {
+                            lstemp2 += (char)(lstemp1[lnCnt2] - 32);
+                        }
+                        else
+                        {
+                            lstemp2 += lstemp1[lnCnt2];
+                        }
+                    }
+                    lsAnsStr += lstemp2 + '.';
+                    lstemp1 = "";
+                }
+                else
+                {
+                    lstemp1 += (lsStr[lnCnt]);
+                }
+            }
+            lsAnsStr2 = LRTrim(lsAnsStr);
+            lsAnsStr2 +=  '.';
+
+
+
+            Console.WriteLine("Title Sentence of {0} is :- {1} ",lsStr,lsAnsStr2);
+            Console.ReadLine();
+        }
+        public static void FindSubString()
+        {
+            Console.WriteLine("Enter A string ");
+            string lsStr = Console.ReadLine();
+            Console.WriteLine("Enter index of String");
+            int lsIdx = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter length of String");
+            int lsLen = int.Parse(Console.ReadLine());
+            bool lsValidIdx = false;
+            string lsAnsStr = "";
+
+            if (lsIdx < 0 || lsIdx > lsStr.Length || lsLen>lsStr.Length)
+            {
+                Console.WriteLine("Enter valid index");
+                lsValidIdx = true;
+            }
+
+
+            if (lsLen > lsStr.Length)
+            {
+                Console.WriteLine("Enter valid Length");
+                lsValidIdx = true;
+            }
+
+
+            if (lsValidIdx == false)
+            {
+                for (int lncnt = lsIdx; lncnt < lsLen; lncnt++)
+                {
+                    lsAnsStr += lsStr[lncnt];
+                }
+            }
+            if (lsValidIdx == false)
+                Console.WriteLine("Substring of {0} is this {1}", lsStr, lsAnsStr);
+            Console.ReadLine();
+        }
+        public static bool ValidationForHexa(string hexa)
+        {
+            for(int i = 0; i < hexa.Length; i++)
+            {
+                if ((hexa[i] >= '0' && hexa[i] <= '9') || (hexa[i] >= 'a' && hexa[i] <= 'f') ||
+                    (hexa[i] >= 'A' && hexa[i] <= 'F'))
+                    continue;
+                else
+                    return false;
+            }
+            return true;
+        }
+        public static void HexaToDecimal()
+        {
+            int lsDeci=0;
+            int power = 1; int num=0;
+            Console.WriteLine("Enter a Number");
+            string lsval = Console.ReadLine();
+            if (ValidationForHexa(lsval))
+            {
+
+                for (int lncnt = lsval.Length - 1; lncnt >= 0; lncnt--)
+                {
+                    char rem = lsval[lncnt];
+
+                    if (rem == 'A' || rem == 'a')
+                        num = 10;
+                    else if (rem == 'B' || rem == 'b') num = 11;
+                    else if (rem == 'C' || rem == 'c') num = 12;
+                    else if (rem == 'D' || rem == 'd') num = 13;
+                    else if (rem == 'E' || rem == 'e') num = 14;
+                    else if (rem == 'F' || rem == 'f') num = 15;
+
+                    if (rem >= '0' && rem <= '9')
+                    {
+                        int number = rem - '0';
+                        lsDeci = lsDeci + (power * number);
+                    }
+                    else
+                        lsDeci = lsDeci + (power * num);
+                    power *= 16;
+
+                }
+                Console.WriteLine("Decimal value of {0} is this {1}",lsval,lsDeci);
+            }
+            else
+            {
+                Console.WriteLine("Not A valid HexaNumber");
+            }
+            Console.ReadLine();
+        }
+        public static void DecimalToHex()
+        {
+            string lsHex = "";
+            Console.WriteLine("Enter a Number");
+            string lsval=Console.ReadLine();
+            if(ValidationForNumeric(lsval) == true)
+            {
+                int lsNum = int.Parse(lsval);
+                 while(lsNum !=0)
+                {
+                    int rem = lsNum % 16;
+                    if (rem == 10)
+                        lsHex += 'A';
+                    else if(rem == 11) lsHex += 'B';
+                   else if (rem == 12) lsHex += 'C';
+                    else if (rem == 13) lsHex += 'D';
+                   else if (rem == 14) lsHex += 'E';
+                   else if (rem == 15) lsHex += 'F';
+                    else lsHex += rem;
+                    lsNum/= 16;
+                }
+                Console.WriteLine("HexaDecimal is this  {0} of a Number {1}", ReverseString(lsHex), lsval);
+            }
+
+            else
+            {
+                Console.WriteLine("Not A Valid Number");
+            }
+            Console.ReadLine();
+        }
         public static string ReverseString(string inStr)
         {
             string lsStr = "";
@@ -40,7 +272,7 @@ namespace MyConsoleApp
 
             Console.ReadLine();
         }
-        public static bool isBinary(string isstr)
+        public static bool IsBinary(string isstr)
         {
             for(int lncnt =0; lncnt < isstr.Length; lncnt++)
             {
@@ -61,7 +293,7 @@ namespace MyConsoleApp
          
             int power = 1;
 
-            if (isBinary(lsStr) == true)
+            if (IsBinary(lsStr) == true)
             {
                 for (int lncnt = lsStr.Length - 1; lncnt >=0; lncnt--)
                 {
@@ -85,7 +317,7 @@ namespace MyConsoleApp
             Console.WriteLine("Enter A Number ");
             string lsStr = Console.ReadLine();
             
-            int lsRevNum = 0;
+          
             if(ValidationForNumeric(lsStr) == false)
             {
                 Console.WriteLine("Not A valid Number");
@@ -529,7 +761,7 @@ namespace MyConsoleApp
           
             string lsRevStr = "";
             int CheckPal = 0;
-            int EmtVal = 0;
+           
          
 
      
@@ -950,7 +1182,14 @@ namespace MyConsoleApp
             //CheckPalindromeOrNot();
 
             //BinaryToDecimal();
-            DecimalToBinary();
+            //DecimalToBinary();
+            //DecimalToHex();
+            // HexaToDecimal();
+            // FindSubString();
+            //TitleSentence();
+            Console.WriteLine("Enter A Number");
+            int lnNum = int.Parse(Console.ReadLine());
+            SumOfOddEven(lnNum);
 
         }
     }
