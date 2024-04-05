@@ -2,11 +2,44 @@
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
+using System.Security.Principal;
 
 namespace MyConsoleApp
 {
     internal class Program
     {
+        public static int FindOccuerenceOfChar(string InStr, char InChar)
+        {
+            int lnCount = 0;
+            for(int lnCnt=0; lnCnt<InStr.Length; lnCnt++)
+            {
+                if (InStr[lnCnt] == InChar)
+                    lnCount++;
+            }
+            return lnCount;
+        }
+        public static void CalculateCompoundInterest()
+        {
+            Console.WriteLine("Enter the principal amount: ");
+            double principal = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the annual interest rate (in percentage): ");
+            double interestRate = double.Parse(Console.ReadLine()) / 100; // Convert percentage to decimal
+
+            Console.WriteLine("Enter the number of years: ");
+            int years = int.Parse(Console.ReadLine());
+
+            double amount = principal;
+            for (int i = 0; i < years; i++)
+            {
+                amount += amount * interestRate;
+            }
+
+           // double compoundInterest = amount - principal;
+            Console.WriteLine($"The Compound Interest is {amount}");
+            Console.ReadLine();
+
+        }
         public static void SumOfOddEven(int InNum)
         {
             int lnEvenSum = 0;
@@ -1183,11 +1216,20 @@ namespace MyConsoleApp
             //DecimalToHex();
             // HexaToDecimal();
             // FindSubString();
-            TitleSentence();
+            // TitleSentence();
 
-         /*   Console.WriteLine("Enter A Number");
-            int lnNum = int.Parse((Console.ReadLine()));
-            SumOfOddEven(lnNum);*/
+            /*   Console.WriteLine("Enter A Number");
+               int lnNum = int.Parse((Console.ReadLine()));
+               SumOfOddEven(lnNum);*/
+            //CalculateCompoundInterest();
+            Console.WriteLine("Enter A String");
+            string lsStr  = Console.ReadLine();
+            Console.WriteLine("Enter a character");
+            char lcChar  =char.Parse(Console.ReadLine());
+            int lnFrequency = FindOccuerenceOfChar(lsStr, lcChar);
+
+            Console.WriteLine("Frequency of {0} is :- {1}",lcChar, lnFrequency);
+            Console.ReadLine();
 
         }
     }
