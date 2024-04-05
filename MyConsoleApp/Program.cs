@@ -49,9 +49,6 @@ namespace MyConsoleApp
 
             string lstemp1 = "";
 
-           
-
-
             for (int lnCnt  = 0; lnCnt < lsStr.Length; lnCnt++)
             {
                 
@@ -1186,10 +1183,11 @@ namespace MyConsoleApp
             //DecimalToHex();
             // HexaToDecimal();
             // FindSubString();
-            //TitleSentence();
-            Console.WriteLine("Enter A Number");
-            int lnNum = int.Parse(Console.ReadLine());
-            SumOfOddEven(lnNum);
+            TitleSentence();
+
+         /*   Console.WriteLine("Enter A Number");
+            int lnNum = int.Parse((Console.ReadLine()));
+            SumOfOddEven(lnNum);*/
 
         }
     }
