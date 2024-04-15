@@ -1,13 +1,151 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Globalization;
-using System.Security.Principal;
+
 
 namespace MyConsoleApp
 {
     internal class Program
     {
+        public static bool CheckPrime(int Innum)
+        {
+            int counter = 0;
+            for(int lncount = 1; lncount <= Innum; lncount++)
+            {
+                if(Innum % lncount == 0)
+                {
+                    counter++;
+                }
+            }
+            if(counter == 2)
+                return true;
+            return false;
+        }
+        public static void ArrayPractice()
+        {
+            int[] lnnums = new int[100];
+            int lnTotalSum = 0;
+            for(int lncount = 0; lncount<100; lncount++)
+            {
+                lnnums[lncount] = lncount+1;
+            }
+            // Reverse Order
+            Console.WriteLine("Reverse Order");
+            for(int lncount = lnnums.Length-1;lncount>=0; lncount--)
+            {
+                Console.Write(lnnums[lncount]+" ");
+               lnTotalSum += lnnums[lncount];
+            }
+            Console.WriteLine();
+            Console.WriteLine("Prime Number");
+
+            for(int lncount=0; lncount<lnnums.Length; lncount++)
+            {
+                if (CheckPrime(lnnums[lncount]))
+                {
+                    Console.WriteLine(lnnums[lncount]+" "+"Index position is "+lncount);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine(" Total Sum is {0} ",lnTotalSum);
+
+        }
+        public static void SnakeLadder()
+        {
+            Console.WriteLine("*GAME STARTS*");
+            Console.WriteLine("Press 1 for play");
+            Console.WriteLine("Press 0 for exit");
+
+            int choice = int.Parse(Console.ReadLine());
+            if (choice == 0)
+            {
+                Console.WriteLine("Exiting the game.");
+                return;
+            }
+
+            Random dice = new Random();
+            int[] playerPositions = new int[2]; // Store positions for two players
+            int[] diceCounts = new int[2]; // Store dice counts for two players
+            bool gameEnd = false;
+            int currentPlayer = 0; // Player 1 starts first
+
+            Console.WriteLine("WELCOME TO SNAKE & LADDER GAME");
+
+            while (!gameEnd)
+            {
+                Console.WriteLine($"Player {currentPlayer + 1}'s turn. Press any key to roll the dice.");
+                Console.ReadKey();
+
+                int diceValue = dice.Next(1, 7); // Dice rolls between 1 and 6
+                diceCounts[currentPlayer]++; // Increment dice count for the current player
+                Console.WriteLine($"Dice Value is {diceValue}");
+
+                playerPositions[currentPlayer] += diceValue; // Move player
+
+                // Check for ladder or snake
+                switch (playerPositions[currentPlayer])
+                {
+                    // LADDER
+                    case 4:
+                        playerPositions[currentPlayer] = 14;
+                        break;
+                    case 21:
+                        playerPositions[currentPlayer] = 76;
+                        break;
+                    case 31:
+                        playerPositions[currentPlayer] = 42;
+                        break;
+                    case 71:
+                        playerPositions[currentPlayer] = 92;
+                        break;
+                    // SNAKE
+                    case 36:
+                        playerPositions[currentPlayer] = 6;
+                        break;
+                    case 62:
+                        playerPositions[currentPlayer] = 18;
+                        break;
+                    case 88:
+                        playerPositions[currentPlayer] = 24;
+                        break;
+                    case 99:
+                        playerPositions[currentPlayer] = 35;
+                        break;
+                }
+
+                Console.WriteLine($"Player {currentPlayer + 1} is at position {playerPositions[currentPlayer]}");
+
+                // Check for winning condition
+                if (playerPositions[currentPlayer] >= 100)
+                {
+                    Console.WriteLine($"Congratulations! Player {currentPlayer + 1} wins! They took {diceCounts[currentPlayer]} attempts to win.");
+                    gameEnd = true;
+                }
+                else
+                {
+                    currentPlayer = (currentPlayer + 1) % 2; // Switch to the other player
+                }
+            }
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+        }
+
+
+
+
+
+
+
+        public static void Recursion(int num)
+        {
+            if (num > 100)
+                return;
+            else
+            {
+                Console.WriteLine(num);
+                Recursion(num + 1);
+               
+            }
+        }
         public static int FindOccuerenceOfChar(string InStr, char InChar)
         {
             int lnCount = 0;
@@ -1222,13 +1360,18 @@ namespace MyConsoleApp
                int lnNum = int.Parse((Console.ReadLine()));
                SumOfOddEven(lnNum);*/
             //CalculateCompoundInterest();
-            Console.WriteLine("Enter A String");
-            string lsStr  = Console.ReadLine();
-            Console.WriteLine("Enter a character");
-            char lcChar  =char.Parse(Console.ReadLine());
-            int lnFrequency = FindOccuerenceOfChar(lsStr, lcChar);
+            /*  Console.WriteLine("Enter A String");
+              string lsStr  = Console.ReadLine();
+              Console.WriteLine("Enter a character");
+              char lcChar  =char.Parse(Console.ReadLine());
+              int lnFrequency = FindOccuerenceOfChar(lsStr, lcChar);
 
-            Console.WriteLine("Frequency of {0} is :- {1}",lcChar, lnFrequency);
+              Console.WriteLine("Frequency of {0} is :- {1}",lcChar, lnFrequency);
+              Console.ReadLine();*/
+            // Recursion(1);
+            //SnakeLadder();
+           
+            ArrayPractice();
             Console.ReadLine();
 
         }
