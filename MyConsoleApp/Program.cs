@@ -1,10 +1,142 @@
 ﻿using System;
+using System.Reflection.Emit;
+using System.Security.Principal;
 
 
 namespace MyConsoleApp
 {
     internal class Program
     {
+       public static bool CheckDuplicate(string[] InCountryName , string instr)
+        {
+            for(int lncnt=0;  lncnt<InCountryName.Length; lncnt++)
+            {
+                if (InCountryName[lncnt] == instr)
+                    return true ;
+            }
+            return false;
+        }
+        public static bool ValidateCountryName(string inStr)
+        {
+            string lslowecase = inStr.ToLower();
+            string[] CountryName = { "china", "bhutan", "nepal", "pakistan", "bangladesh", "myanmar" };
+            for(int lncnt  = 0; lncnt < CountryName.Length;lncnt++)
+            {
+                if(lslowecase == CountryName[lncnt])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static bool CountryNameFull(string[] InCountryName)
+        {
+            foreach (string name in InCountryName)
+            {
+                if (string.IsNullOrEmpty(name))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static void RandomCountryName()
+        {
+            string[] CountryName = new string[6];
+            Random Index = new Random(0);
+
+            while (!CountryNameFull(CountryName))
+            {
+               
+                int IndexValue = Index.Next(0, 6);
+               
+                if (string.IsNullOrEmpty(CountryName[IndexValue]))
+                {
+                   
+                    Console.WriteLine("Enter a Country Name");
+                    string lsCountryName = Console.ReadLine();
+                    if(!ValidateCountryName(lsCountryName) && !CheckDuplicate(CountryName,lsCountryName))
+                    {
+                        CountryName[IndexValue] = lsCountryName;
+                    }
+                     else if(ValidateCountryName(lsCountryName) ==  true)
+                    {
+                        Console.WriteLine(lsCountryName + " Wrong country Name");
+                        continue;
+                    }
+                   else  if(CheckDuplicate(CountryName, lsCountryName) == true)
+                    {
+                        Console.WriteLine(lsCountryName+" Country Name is already Present");
+                        continue;
+
+                    }
+                   
+
+                }
+            }
+           
+
+            bool gameSrt = true;
+            while (gameSrt)
+            {
+                Console.Clear();
+                Console.WriteLine("Game Started");
+                Console.WriteLine("Enter A Country Name");
+                string lsCountryName = Console.ReadLine();
+                Console.WriteLine("Enter A Index Value Of Country");
+                int index = int.Parse(Console.ReadLine());
+                if (CountryName[index] == lsCountryName)
+                {
+                    Console.WriteLine("YOU WIN");
+                }
+                else
+                {
+                    Console.WriteLine("YOU LOSE");
+                }
+                Console.WriteLine("Press 1 for Play");
+           
+                Console.WriteLine("Press 0 for Exit");
+                int InA = int.Parse(Console.ReadLine());
+                if (InA == 0)
+                    gameSrt = false;
+
+            }
+
+        }
+
+        public static void Array2()
+        {
+            string[] lsStr = new string[6];
+            for(int i = 0; i<6; i++)
+            {
+                Console.WriteLine();
+            }
+            
+        }
+        public static void SumofThreeAndFive(int inNum,ref double SumofThree,ref double SumofFive)
+        {
+            for(int lnCount=1; lnCount<=inNum; lnCount++)
+            {
+                if(lnCount % 3 == 0)
+                {
+                    SumofThree += lnCount;
+                }
+                if(lnCount % 5 == 0)
+                {
+                    SumofFive += lnCount;
+                }
+            }
+        }
+       public static string  SimpleAndCompoundInterest(double InAmount,double InInterest,int InYear)
+        {
+            double lnCompoundInterest = InAmount * Math.Pow((1 + InInterest / 100), InYear);
+            double lnSimpleinterest = (InAmount * InInterest * InYear) / 100;
+            Console.WriteLine("Simple Interest is :- {0} and Compound Interest is :-{1}", lnSimpleinterest+InAmount, lnCompoundInterest);  
+            string OutAns = lnCompoundInterest.ToString()+" "+lnCompoundInterest.ToString();
+            return OutAns;
+            
+        }
         public static bool CheckPrime(int Innum)
         {
             int counter = 0;
@@ -156,28 +288,21 @@ namespace MyConsoleApp
             }
             return lnCount;
         }
-        public static void CalculateCompoundInterest()
+       /* public static double CalculateCompoundInterest(double principal, double interestRate, int years)
         {
-            Console.WriteLine("Enter the principal amount: ");
-            double principal = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter the annual interest rate (in percentage): ");
-            double interestRate = double.Parse(Console.ReadLine()) / 100; // Convert percentage to decimal
 
-            Console.WriteLine("Enter the number of years: ");
-            int years = int.Parse(Console.ReadLine());
+            //double amount = principal;
+            // for (int i = 0; i < years; i++)
+            // {
+            //      amount += amount * interestRate;
+            //  }
 
-            double amount = principal;
-            for (int i = 0; i < years; i++)
-            {
-                amount += amount * interestRate;
-            }
+            // double compoundInterest = amount - principal;
+         
+            return amount;
 
-           // double compoundInterest = amount - principal;
-            Console.WriteLine($"The Compound Interest is {amount}");
-            Console.ReadLine();
-
-        }
+        }*/
         public static void SumOfOddEven(int InNum)
         {
             int lnEvenSum = 0;
@@ -1370,10 +1495,45 @@ namespace MyConsoleApp
               Console.ReadLine();*/
             // Recursion(1);
             //SnakeLadder();
-           
-            ArrayPractice();
-            Console.ReadLine();
 
+            // ArrayPractice();
+            /*  Console.WriteLine("Enter a Amount");
+              double lnAmount = double.Parse(Console.ReadLine());
+              Console.WriteLine("Enter a Interset");
+              double lnInterest = double.Parse(Console.ReadLine());
+              Console.WriteLine("Enter a Year");
+              int lnYear = int.Parse(Console.ReadLine());
+              string lnAns = SimpleAndCompoundInterest(lnAmount, lnInterest,lnYear);
+              string simpleIn = "";
+              string CompoundIn = "";
+              int flag = 0;
+              for(int lncount =0; lncount < lnAns.Length; lncount++)
+              {
+                  if(flag == 0)
+                  {
+                      simpleIn += lnAns[lncount];
+                  }
+                  if (lnAns[lncount]==' ')
+                  {
+                      flag = 1;
+                  }
+                  if(flag == 1)
+                  {
+                      CompoundIn+= lnAns[lncount];
+                  }
+              }
+              // Console.WriteLine(simpleIn + " " + CompoundIn);
+            */
+            /* double SumOfThree = 0;
+             double SumOfFive = 0;
+             Console.WriteLine("Enter A Number ");
+             int lnNum = int.Parse(Console.ReadLine());
+             SumofThreeAndFive(lnNum, ref SumOfThree, ref SumOfFive);
+             Console.WriteLine("Sum of Divisble By three is :- "+SumOfThree + " " + "Sum of Divisble By Five is:- "+ SumOfFive);
+             Console.ReadLine();*/
+            RandomCountryName();
+
+            Console.ReadLine();
         }
     }
 }
