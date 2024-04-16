@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Security.Principal;
 
@@ -7,12 +8,12 @@ namespace MyConsoleApp
 {
     internal class Program
     {
-       public static bool CheckDuplicate(string[] InCountryName , string instr)
+        public static bool CheckDuplicate(string[] InCountryName, string instr)
         {
-            for(int lncnt=0;  lncnt<InCountryName.Length; lncnt++)
+            for (int lncnt = 0; lncnt < InCountryName.Length; lncnt++)
             {
                 if (InCountryName[lncnt] == instr)
-                    return true ;
+                    return true;
             }
             return false;
         }
@@ -20,9 +21,9 @@ namespace MyConsoleApp
         {
             string lslowecase = inStr.ToLower();
             string[] CountryName = { "china", "bhutan", "nepal", "pakistan", "bangladesh", "myanmar" };
-            for(int lncnt  = 0; lncnt < CountryName.Length;lncnt++)
+            for (int lncnt = 0; lncnt < CountryName.Length; lncnt++)
             {
-                if(lslowecase == CountryName[lncnt])
+                if (lslowecase == CountryName[lncnt])
                 {
                     return false;
                 }
@@ -45,47 +46,79 @@ namespace MyConsoleApp
         {
             string[] CountryName = new string[6];
             Random Index = new Random(0);
-
+            int lnCountryCounter = 1;
             while (!CountryNameFull(CountryName))
             {
-               
+
                 int IndexValue = Index.Next(0, 6);
-               
+
                 if (string.IsNullOrEmpty(CountryName[IndexValue]))
                 {
-                   
-                    Console.WriteLine("Enter a Country Name");
+
+                    Console.Write("Enter India Neighbouring Country " + lnCountryCounter+" :-");
                     string lsCountryName = Console.ReadLine();
-                    if(!ValidateCountryName(lsCountryName) && !CheckDuplicate(CountryName,lsCountryName))
+                    if (!ValidateCountryName(lsCountryName) && !CheckDuplicate(CountryName, lsCountryName))
                     {
                         CountryName[IndexValue] = lsCountryName;
+                        lnCountryCounter++;
                     }
-                     else if(ValidateCountryName(lsCountryName) ==  true)
+                    else if (ValidateCountryName(lsCountryName) == true)
                     {
                         Console.WriteLine(lsCountryName + " Wrong country Name");
                         continue;
                     }
-                   else  if(CheckDuplicate(CountryName, lsCountryName) == true)
+                    else if (CheckDuplicate(CountryName, lsCountryName) == true)
                     {
-                        Console.WriteLine(lsCountryName+" Country Name is already Present");
+                        Console.WriteLine(lsCountryName + " Country Name is already Present");
                         continue;
 
                     }
-                   
+
 
                 }
             }
-           
 
+            Console.Clear();
             bool gameSrt = true;
             while (gameSrt)
             {
-                Console.Clear();
+
                 Console.WriteLine("Game Started");
-                Console.WriteLine("Enter A Country Name");
-                string lsCountryName = Console.ReadLine();
-                Console.WriteLine("Enter A Index Value Of Country");
-                int index = int.Parse(Console.ReadLine());
+
+                string lsCountryName = "";
+                bool lsValidCountryName = false;
+                bool lsValidIndex = false;
+                int index = -1;
+                while (!lsValidCountryName)
+                {
+                    Console.WriteLine("Enter A Country Name");
+                    lsCountryName = Console.ReadLine();
+                    if (!ValidateCountryName(lsCountryName))
+                    {
+                        lsValidCountryName = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enter a valid Country Name");
+                    }
+
+                }
+       
+                while (!lsValidIndex)
+                {
+                    Console.WriteLine("Enter A Index Value Of Country");
+                    index = int.Parse(Console.ReadLine());
+                    if (index >= 0 && index < CountryName.Length)
+                    {
+                        lsValidIndex = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Position Should be Between 0-5");
+                    }
+                }
+
+
                 if (CountryName[index] == lsCountryName)
                 {
                     Console.WriteLine("YOU WIN");
@@ -95,7 +128,6 @@ namespace MyConsoleApp
                     Console.WriteLine("YOU LOSE");
                 }
                 Console.WriteLine("Press 1 for Play");
-           
                 Console.WriteLine("Press 0 for Exit");
                 int InA = int.Parse(Console.ReadLine());
                 if (InA == 0)
@@ -104,6 +136,7 @@ namespace MyConsoleApp
             }
 
         }
+    
 
         public static void Array2()
         {
