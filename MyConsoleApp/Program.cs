@@ -31,7 +31,7 @@ namespace MyConsoleApp
             Console.WriteLine("Enter A Roll Number");
             int InRollNum = int.Parse(Console.ReadLine());
             int inFoundIndex = -1;
-            for (int lncnt = 0; lncnt < StRoll - 1; lncnt++)
+            for (int lncnt = 0; lncnt < lnNumberOfStd - 1; lncnt++)
             {
                 if (IobjStudentRoll[lncnt] == InRollNum)
                 {
@@ -67,6 +67,7 @@ namespace MyConsoleApp
                 Console.Write("Current RollNo :- {0} Name :- {1} Address :- {2} Marks:-{3}", IobjStudentRoll[inFoundIndex
                     ], IobjStudentName[inFoundIndex], IobjStudentAddress[inFoundIndex], IobjStudentMarks[inFoundIndex]);
             }
+            lnNumberOfStd--;
         }
         public static void ChangeStudentDetail(string[] IobjStudentName, string[] IobjStudentAddress,
             double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
@@ -74,7 +75,7 @@ namespace MyConsoleApp
             Console.WriteLine("Enter A Roll Number");
             int InRollNum = int.Parse(Console.ReadLine());
             int inFoundIndex = -1;
-            for (int lncnt = 0; lncnt < lnNumberOfStd - 1; lncnt++)
+            for (int lncnt = 0; lncnt < IobjStudentRoll.Length; lncnt++)
             {
                 if (IobjStudentRoll[lncnt] == InRollNum)
                 {
@@ -125,21 +126,28 @@ namespace MyConsoleApp
             double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
         {
             int lnRoll = lnNumberOfStd;
-            Console.Write("Enter a RollNum of Student:- ");
-            IobjStudentRoll[lnRoll - 1] = int.Parse(Console.ReadLine());
-         
-            Console.Write("Enter a Name Student:- ");
-            IobjStudentName[lnRoll-1] =Console.ReadLine();
-            Console.Write("Enter a Address of  Student:- ");
-            IobjStudentAddress[lnRoll-1] = Console.ReadLine();
-            Console.Write("Enter a Marks of  Student:- ");
-            IobjStudentMarks[lnRoll-1] = double.Parse(Console.ReadLine());
-           
-            Console.WriteLine("Student Records Saved");
-            Console.WriteLine("Roll Number -> {0}  Name -> {1} Address-> {2} Marks -> {3} ",
-                   IobjStudentRoll[lnRoll-1], IobjStudentName[lnRoll-1], 
-                   IobjStudentAddress[lnRoll-1], IobjStudentMarks[lnRoll-1]);
+            for (int lncnt = 0; lncnt < IobjStudentAddress.Length; lncnt++)
+            {
+                if (IobjStudentAddress[lncnt] == "")
+                {
+                    Console.Write("Enter a RollNum of Student:- ");
+                    IobjStudentRoll[lnRoll - 1] = int.Parse(Console.ReadLine());
 
+                    Console.Write("Enter a Name Student:- ");
+                    IobjStudentName[lnRoll - 1] = Console.ReadLine();
+                    Console.Write("Enter a Address of  Student:- ");
+                    IobjStudentAddress[lnRoll - 1] = Console.ReadLine();
+                    Console.Write("Enter a Marks of  Student:- ");
+                    IobjStudentMarks[lnRoll - 1] = double.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Student Records Saved");
+                    Console.WriteLine("Roll Number -> {0}  Name -> {1} Address-> {2} Marks -> {3} ",
+                           IobjStudentRoll[lnRoll - 1], IobjStudentName[lnRoll - 1],
+                           IobjStudentAddress[lnRoll - 1], IobjStudentMarks[lnRoll - 1]);
+                    break;
+
+                }
+            }
             lnNumberOfStd++;
 
         }
@@ -186,10 +194,24 @@ namespace MyConsoleApp
             string[] IobjStudentAddress = new string[MAX_STUDENT];
             double[] IobjStudentMarks = new double[MAX_STUDENT];
             int[] IobjStudentRoll = new int[MAX_STUDENT];
-
+            
             int lnNumberOfStd = 1;
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\StudentDetail.txt",
+               FileMode.Open, FileAccess.Read);
+            StreamReader IobjSR = new StreamReader(IobjFS);
+            while (!IobjSR.EndOfStream)
+            {
+                string lsStudentDetails = (IobjSR.ReadLine());
+                string[] IobjStdRecords = lsStudentDetails.Split('|');
 
 
+                IobjStudentRoll[lnNumberOfStd-1] = int.Parse(IobjStdRecords[0]);
+                IobjStudentName[lnNumberOfStd-1] = IobjStdRecords[1];
+                IobjStudentAddress[lnNumberOfStd-1] = IobjStdRecords[2];
+                IobjStudentMarks[lnNumberOfStd-1]=double.Parse(IobjStdRecords[3]);
+                lnNumberOfStd++;
+
+            }
             bool CheckModification = false;
             while(!CheckModification)
             {
