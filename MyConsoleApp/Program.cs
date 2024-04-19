@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Security.Principal;
@@ -1503,9 +1504,36 @@ namespace MyConsoleApp
             }
             Console.ReadLine();
         }
+        public static void  WriteData()
+        {
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\test.txt",
+                FileMode.Append,FileAccess.Write); 
+            StreamWriter IobjSW = new StreamWriter(IobjFS);
+            Console.WriteLine("Enter The Text Which You Want to Write To The File");
+            string lsStr  = Console.ReadLine();
+            IobjSW.WriteLine(lsStr);
+            IobjSW.Flush();
+            IobjSW.Close();
+            IobjFS.Close();
 
+        }
         static void Main(string[] args)
         {
+
+
+            WriteData();
+
+
+
+
+
+
+
+
+
+
+
+
             /*  bool lsRightEx = false;
               do
               {
@@ -1752,7 +1780,7 @@ namespace MyConsoleApp
              Console.ReadLine();*/
             // RandomCountryName();
             // StudentReacordeSystem();
-            Console.WriteLine("Enter A Number ");
+           /* Console.WriteLine("Enter A Number ");
             int num = int.Parse(Console.ReadLine());
 
 
@@ -1767,7 +1795,7 @@ namespace MyConsoleApp
             {
                 Console.WriteLine("Not Found");
             }
-            Console.ReadLine();
+            Console.ReadLine();*/
         }
     }
 }
