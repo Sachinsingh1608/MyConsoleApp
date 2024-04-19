@@ -26,7 +26,7 @@ namespace MyConsoleApp
         }
        
         public static void RemoveStudentDetail(string[] IobjStudentName, string[] IobjStudentAddress,
-       double[] IobjStudentMarks, int[] IobjStudentRoll, ref int StRoll)
+       double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
         {
             Console.WriteLine("Enter A Roll Number");
             int InRollNum = int.Parse(Console.ReadLine());
@@ -69,12 +69,12 @@ namespace MyConsoleApp
             }
         }
         public static void ChangeStudentDetail(string[] IobjStudentName, string[] IobjStudentAddress,
-            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int StRoll)
+            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
         {
             Console.WriteLine("Enter A Roll Number");
             int InRollNum = int.Parse(Console.ReadLine());
             int inFoundIndex = -1;
-            for (int lncnt = 0; lncnt < StRoll-1; lncnt++)
+            for (int lncnt = 0; lncnt < lnNumberOfStd - 1; lncnt++)
             {
                 if (IobjStudentRoll[lncnt] == InRollNum)
                 {
@@ -122,9 +122,9 @@ namespace MyConsoleApp
             }
         }
         public static void AddStudentDetails(string[] IobjStudentName, string[] IobjStudentAddress, 
-            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int StRoll)
+            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
         {
-            int lnRoll = StRoll;
+            int lnRoll = lnNumberOfStd;
             Console.Write("Enter a RollNum of Student:- ");
             IobjStudentRoll[lnRoll - 1] = int.Parse(Console.ReadLine());
          
@@ -140,8 +140,44 @@ namespace MyConsoleApp
                    IobjStudentRoll[lnRoll-1], IobjStudentName[lnRoll-1], 
                    IobjStudentAddress[lnRoll-1], IobjStudentMarks[lnRoll-1]);
 
-            StRoll++;
+            lnNumberOfStd++;
 
+        }
+        public static void ReadToFile(string[] IobjStudentName, string[] IobjStudentAddress,
+            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberStd)
+        {
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\StudentDetail.txt",
+               FileMode.Open, FileAccess.Read);
+            StreamReader IobjSR = new StreamReader(IobjFS);
+          
+            while (!IobjSR.EndOfStream)
+            {
+                string lsStudentDetails = (IobjSR.ReadLine());
+                string[] IobjStdRecords = lsStudentDetails.Split('|');
+                
+                    Console.WriteLine("Roll Number -> {0}    Name -> {1}   Address-> {2}   Marks -> {3} ",
+                  IobjStdRecords[0], IobjStdRecords[1],
+                  IobjStdRecords[2], IobjStdRecords[3]);
+                
+            }
+            Console.ReadLine();
+        }
+        public static void SaveToFile(string[] IobjStudentName, string[] IobjStudentAddress,
+            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
+        {
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\StudentDetail.txt",
+                FileMode.Append, FileAccess.Write);
+            StreamWriter IobjSW = new StreamWriter(IobjFS);
+            for (int lncnt = 0; lncnt < lnNumberOfStd - 1; lncnt++)
+            {
+                
+               IobjSW.WriteLine(IobjStudentRoll[lncnt]+"|"+IobjStudentName[lncnt]+"|"+ IobjStudentAddress[lncnt]+
+                   "|"+ IobjStudentMarks[lncnt]);
+               
+            }
+            IobjSW.Flush();
+            IobjSW.Close();
+            IobjFS.Close();
         }
         public static void StudentReacordeSystem()
         {
@@ -151,7 +187,7 @@ namespace MyConsoleApp
             double[] IobjStudentMarks = new double[MAX_STUDENT];
             int[] IobjStudentRoll = new int[MAX_STUDENT];
 
-            int StRoll = 1;
+            int lnNumberOfStd = 1;
 
 
             bool CheckModification = false;
@@ -160,7 +196,9 @@ namespace MyConsoleApp
               
                 Console.WriteLine("Add Student Details Name Press 1");
                 Console.WriteLine("Change Student Details Name Press 2");
-                Console.WriteLine("Remove Student Details Name Press 3"); 
+                Console.WriteLine("Remove Student Details Name Press 3");
+                Console.WriteLine("Save  Student Details Name Press 4");
+                Console.WriteLine("Read  Student Details Name Press 5");
                 Console.WriteLine("For Exit Press 0");
                 string lsModification = Console.ReadLine();
           
@@ -171,15 +209,23 @@ namespace MyConsoleApp
                         break;
                     case "1":
                         AddStudentDetails(IobjStudentName, IobjStudentAddress, IobjStudentMarks, 
-                            IobjStudentRoll,ref StRoll);
+                            IobjStudentRoll,ref lnNumberOfStd);
                         break;
                     case "2":
                         ChangeStudentDetail(IobjStudentName, IobjStudentAddress, IobjStudentMarks,
-                            IobjStudentRoll, ref StRoll);
+                            IobjStudentRoll, ref lnNumberOfStd);
                         break;
                     case "3":
                         RemoveStudentDetail(IobjStudentName, IobjStudentAddress, IobjStudentMarks,
-                           IobjStudentRoll, ref StRoll);
+                           IobjStudentRoll, ref lnNumberOfStd);
+                        break;
+                    case "4":
+                        SaveToFile(IobjStudentName, IobjStudentAddress, IobjStudentMarks,
+                           IobjStudentRoll, ref lnNumberOfStd);
+                        break;
+                    case "5":
+                        ReadToFile(IobjStudentName, IobjStudentAddress, IobjStudentMarks,
+                           IobjStudentRoll, ref lnNumberOfStd);
                         break;
 
 
@@ -189,11 +235,7 @@ namespace MyConsoleApp
              
 
             }
-            for(int lncnt = 0; lncnt < StRoll-1; lncnt++)
-            {
-                Console.WriteLine("Roll Number -> {0}  Name -> {1} Address-> {2} Marks -> {3} ",
-                    IobjStudentRoll[lncnt], IobjStudentName[lncnt], IobjStudentAddress[lncnt], IobjStudentMarks[lncnt]);
-            }
+            
         }
         public static bool CheckDuplicate(string[] InCountryName, string instr)
         {
@@ -1504,6 +1546,22 @@ namespace MyConsoleApp
             }
             Console.ReadLine();
         }
+        public static void ReadData()
+        {
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\test.txt",
+                FileMode.Open, FileAccess.Read);
+            StreamReader IobjSR = new StreamReader(IobjFS);
+            Console.WriteLine("Program To Show Content Of Test File");
+            while(!IobjSR.EndOfStream)
+            {
+                Console.WriteLine(IobjSR.ReadLine());
+            }
+            Console.ReadLine() ;
+            IobjSR.Close();
+            IobjSR.Close();
+            
+
+        }
         public static void  WriteData()
         {
             FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\test.txt",
@@ -1515,15 +1573,15 @@ namespace MyConsoleApp
             IobjSW.Flush();
             IobjSW.Close();
             IobjFS.Close();
-
+            
         }
         static void Main(string[] args)
         {
 
+            StudentReacordeSystem();
+            //WriteData();
 
-            WriteData();
-
-
+            // ReadData();
 
 
 
@@ -1780,22 +1838,22 @@ namespace MyConsoleApp
              Console.ReadLine();*/
             // RandomCountryName();
             // StudentReacordeSystem();
-           /* Console.WriteLine("Enter A Number ");
-            int num = int.Parse(Console.ReadLine());
+            /* Console.WriteLine("Enter A Number ");
+             int num = int.Parse(Console.ReadLine());
 
 
 
 
-            decimal sqRoot1 = RootFind(num);
-            if (sqRoot1 != -1)
-            {
-                Console.WriteLine(sqRoot1);
-            }
-            else
-            {
-                Console.WriteLine("Not Found");
-            }
-            Console.ReadLine();*/
+             decimal sqRoot1 = RootFind(num);
+             if (sqRoot1 != -1)
+             {
+                 Console.WriteLine(sqRoot1);
+             }
+             else
+             {
+                 Console.WriteLine("Not Found");
+             }
+             Console.ReadLine();*/
         }
     }
 }
