@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Security.Principal;
@@ -8,6 +9,191 @@ namespace MyConsoleApp
 {
     internal class Program
     {
+        public static decimal RootFind(int num)
+        {
+           
+            decimal lnans = -1;
+            for(decimal lnct = 0m ; lnct <=num; lnct+=0.01m)
+            {
+                if(lnct * lnct <= num )
+                {
+                    lnans = lnct;
+                }
+            }
+         
+            return (lnans*100)/100.00m;
+        }
+       
+        public static void RemoveStudentDetail(string[] IobjStudentName, string[] IobjStudentAddress,
+       double[] IobjStudentMarks, int[] IobjStudentRoll, ref int StRoll)
+        {
+            Console.WriteLine("Enter A Roll Number");
+            int InRollNum = int.Parse(Console.ReadLine());
+            int inFoundIndex = -1;
+            for (int lncnt = 0; lncnt < StRoll - 1; lncnt++)
+            {
+                if (IobjStudentRoll[lncnt] == InRollNum)
+                {
+                    inFoundIndex = lncnt;
+                    break;
+                }
+            }
+            if (inFoundIndex == -1)
+            {
+                Console.WriteLine("Wrong Roll Number");
+            }
+            else
+            {
+                Console.WriteLine("Current RollNo :- {0} Name :- {1} Address :- {2} Marks:-{3}", IobjStudentRoll[inFoundIndex
+                    ], IobjStudentName[inFoundIndex], IobjStudentAddress[inFoundIndex], IobjStudentMarks[inFoundIndex]);
+
+
+
+                IobjStudentName[inFoundIndex] = "" ;
+
+
+
+                IobjStudentRoll[inFoundIndex] = 0;
+          
+             
+                
+                    IobjStudentAddress[inFoundIndex] = "";
+
+
+                IobjStudentMarks[inFoundIndex] = 0;
+               
+                Console.WriteLine("Record Deleted");
+                Console.Write("Current RollNo :- {0} Name :- {1} Address :- {2} Marks:-{3}", IobjStudentRoll[inFoundIndex
+                    ], IobjStudentName[inFoundIndex], IobjStudentAddress[inFoundIndex], IobjStudentMarks[inFoundIndex]);
+            }
+        }
+        public static void ChangeStudentDetail(string[] IobjStudentName, string[] IobjStudentAddress,
+            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int StRoll)
+        {
+            Console.WriteLine("Enter A Roll Number");
+            int InRollNum = int.Parse(Console.ReadLine());
+            int inFoundIndex = -1;
+            for (int lncnt = 0; lncnt < StRoll-1; lncnt++)
+            {
+                if (IobjStudentRoll[lncnt] == InRollNum)
+                {
+                    inFoundIndex = lncnt;
+                    break;
+                }
+            }
+            if(inFoundIndex == -1)
+            {
+                Console.WriteLine("Wrong Roll Number");
+            }
+            else
+            {
+                Console.WriteLine("Current RollNo :- {0} Name :- {1} Address :- {2} Marks:-{3}", IobjStudentRoll[inFoundIndex
+                    ], IobjStudentName[inFoundIndex], IobjStudentAddress[inFoundIndex], IobjStudentMarks[inFoundIndex]);
+
+
+                Console.WriteLine("Enter A New Name if Not Just Press Enter");
+                string lsName = Console.ReadLine();
+                if (lsName.Length>0)
+                {
+                    IobjStudentName[inFoundIndex] = lsName;
+                }
+                Console.WriteLine("Enter A New Roll if Not Just Press Enter");
+                string lnRoll = Console.ReadLine();
+                if (lnRoll.Length > 0)
+                {
+                    IobjStudentRoll[inFoundIndex] = int.Parse(lnRoll);
+                }
+                Console.WriteLine("Enter A New Address if Not Just Press Enter");
+                string lsAddress = Console.ReadLine();
+                if (lsAddress.Length > 0)
+                {
+                    IobjStudentAddress[inFoundIndex] = lsAddress;
+                }
+                Console.WriteLine("Enter A New Marks if Not Just Press Enter");
+                string lnMarks = Console.ReadLine();
+                if (lnMarks.Length > 0)
+                {
+                    IobjStudentMarks[inFoundIndex] = double.Parse(lnMarks);
+                }
+                Console.WriteLine("Record Changed");
+                Console.Write("Current RollNo :- {0} Name :- {1} Address :- {2} Marks:-{3}", IobjStudentRoll[inFoundIndex
+                    ], IobjStudentName[inFoundIndex], IobjStudentAddress[inFoundIndex], IobjStudentMarks[inFoundIndex]);
+            }
+        }
+        public static void AddStudentDetails(string[] IobjStudentName, string[] IobjStudentAddress, 
+            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int StRoll)
+        {
+            int lnRoll = StRoll;
+            Console.Write("Enter a RollNum of Student:- ");
+            IobjStudentRoll[lnRoll - 1] = int.Parse(Console.ReadLine());
+         
+            Console.Write("Enter a Name Student:- ");
+            IobjStudentName[lnRoll-1] =Console.ReadLine();
+            Console.Write("Enter a Address of  Student:- ");
+            IobjStudentAddress[lnRoll-1] = Console.ReadLine();
+            Console.Write("Enter a Marks of  Student:- ");
+            IobjStudentMarks[lnRoll-1] = double.Parse(Console.ReadLine());
+           
+            Console.WriteLine("Student Records Saved");
+            Console.WriteLine("Roll Number -> {0}  Name -> {1} Address-> {2} Marks -> {3} ",
+                   IobjStudentRoll[lnRoll-1], IobjStudentName[lnRoll-1], 
+                   IobjStudentAddress[lnRoll-1], IobjStudentMarks[lnRoll-1]);
+
+            StRoll++;
+
+        }
+        public static void StudentReacordeSystem()
+        {
+            const int MAX_STUDENT = 50;
+            string[] IobjStudentName = new string[MAX_STUDENT];
+            string[] IobjStudentAddress = new string[MAX_STUDENT];
+            double[] IobjStudentMarks = new double[MAX_STUDENT];
+            int[] IobjStudentRoll = new int[MAX_STUDENT];
+
+            int StRoll = 1;
+
+
+            bool CheckModification = false;
+            while(!CheckModification)
+            {
+              
+                Console.WriteLine("Add Student Details Name Press 1");
+                Console.WriteLine("Change Student Details Name Press 2");
+                Console.WriteLine("Remove Student Details Name Press 3"); 
+                Console.WriteLine("For Exit Press 0");
+                string lsModification = Console.ReadLine();
+          
+                switch(lsModification)
+                {
+                    case "0":
+                        CheckModification= true; 
+                        break;
+                    case "1":
+                        AddStudentDetails(IobjStudentName, IobjStudentAddress, IobjStudentMarks, 
+                            IobjStudentRoll,ref StRoll);
+                        break;
+                    case "2":
+                        ChangeStudentDetail(IobjStudentName, IobjStudentAddress, IobjStudentMarks,
+                            IobjStudentRoll, ref StRoll);
+                        break;
+                    case "3":
+                        RemoveStudentDetail(IobjStudentName, IobjStudentAddress, IobjStudentMarks,
+                           IobjStudentRoll, ref StRoll);
+                        break;
+
+
+
+
+                }
+             
+
+            }
+            for(int lncnt = 0; lncnt < StRoll-1; lncnt++)
+            {
+                Console.WriteLine("Roll Number -> {0}  Name -> {1} Address-> {2} Marks -> {3} ",
+                    IobjStudentRoll[lncnt], IobjStudentName[lncnt], IobjStudentAddress[lncnt], IobjStudentMarks[lncnt]);
+            }
+        }
         public static bool CheckDuplicate(string[] InCountryName, string instr)
         {
             for (int lncnt = 0; lncnt < InCountryName.Length; lncnt++)
@@ -1564,8 +1750,23 @@ namespace MyConsoleApp
              SumofThreeAndFive(lnNum, ref SumOfThree, ref SumOfFive);
              Console.WriteLine("Sum of Divisble By three is :- "+SumOfThree + " " + "Sum of Divisble By Five is:- "+ SumOfFive);
              Console.ReadLine();*/
-            RandomCountryName();
+            // RandomCountryName();
+            // StudentReacordeSystem();
+            Console.WriteLine("Enter A Number ");
+            int num = int.Parse(Console.ReadLine());
 
+
+
+
+            decimal sqRoot1 = RootFind(num);
+            if (sqRoot1 != -1)
+            {
+                Console.WriteLine(sqRoot1);
+            }
+            else
+            {
+                Console.WriteLine("Not Found");
+            }
             Console.ReadLine();
         }
     }
