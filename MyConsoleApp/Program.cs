@@ -10,6 +10,8 @@ namespace MyConsoleApp
 {
     internal class Program
     {
+       
+        
         public static decimal RootFind(int num)
         {
            
@@ -126,10 +128,7 @@ namespace MyConsoleApp
             double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
         {
             int lnRoll = lnNumberOfStd;
-            for (int lncnt = 0; lncnt < IobjStudentAddress.Length; lncnt++)
-            {
-                if (IobjStudentAddress[lncnt] == "")
-                {
+          
                     Console.Write("Enter a RollNum of Student:- ");
                     IobjStudentRoll[lnRoll - 1] = int.Parse(Console.ReadLine());
 
@@ -144,49 +143,65 @@ namespace MyConsoleApp
                     Console.WriteLine("Roll Number -> {0}  Name -> {1} Address-> {2} Marks -> {3} ",
                            IobjStudentRoll[lnRoll - 1], IobjStudentName[lnRoll - 1],
                            IobjStudentAddress[lnRoll - 1], IobjStudentMarks[lnRoll - 1]);
-                    break;
 
-                }
-            }
+
+                
             lnNumberOfStd++;
 
         }
-        public static void ReadToFile(string[] IobjStudentName, string[] IobjStudentAddress,
-            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberStd)
+        public static void ReadToFile(string[] studentNames, string[] studentAddresses,
+        double[] studentMarks, int[] studentRolls, ref int numberOfStudents)
         {
-            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\StudentDetail.txt",
-               FileMode.Open, FileAccess.Read);
-            StreamReader IobjSR = new StreamReader(IobjFS);
-          
-            while (!IobjSR.EndOfStream)
+     
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Student1Detail.dat",
+                FileMode.Open, FileAccess.Read))
+            using (BinaryReader reader = new BinaryReader(fs))
             {
-                string lsStudentDetails = (IobjSR.ReadLine());
-                string[] IobjStdRecords = lsStudentDetails.Split('|');
-                
-                    Console.WriteLine("Roll Number -> {0}    Name -> {1}   Address-> {2}   Marks -> {3} ",
-                  IobjStdRecords[0], IobjStdRecords[1],
-                  IobjStdRecords[2], IobjStdRecords[3]);
-                
+                while (fs.Position < fs.Length)
+                {
+                    string studentData = reader.ReadString(); 
+                    string[] studentFields = studentData.Split('|'); 
+
+                 
+                        int roll = int.Parse(studentFields[0]);
+                        string name = studentFields[1];
+                        string address = studentFields[2];
+                        double marks = double.Parse(studentFields[3]);
+
+                     
+
+                        studentRolls[numberOfStudents] = roll;
+                        studentNames[numberOfStudents] = name;
+                        studentAddresses[numberOfStudents] = address;
+                        studentMarks[numberOfStudents] = marks;
+                        Console.WriteLine("Roll Number -> {0}   Name -> {1}   Address -> {2}   Marks -> {3} ",
+                   studentRolls[numberOfStudents], studentNames[numberOfStudents], studentAddresses[numberOfStudents],
+                   studentMarks[numberOfStudents]);
+                        numberOfStudents++;
+                        
+                    
+                }
             }
+
+          
             Console.ReadLine();
         }
-        public static void SaveToFile(string[] IobjStudentName, string[] IobjStudentAddress,
-            double[] IobjStudentMarks, int[] IobjStudentRoll, ref int lnNumberOfStd)
+
+        public static void SaveToFile(string[] studentNames, string[] studentAddresses,
+            double[] studentMarks, int[] studentRolls, ref int numberOfStudents)
         {
-            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\StudentDetail.txt",
-                FileMode.Append, FileAccess.Write);
-            StreamWriter IobjSW = new StreamWriter(IobjFS);
-            for (int lncnt = 0; lncnt < lnNumberOfStd - 1; lncnt++)
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Student1Detail.dat",
+                FileMode.Append, FileAccess.Write))
+            using (BinaryWriter writer = new BinaryWriter(fs))
             {
-                
-               IobjSW.WriteLine(IobjStudentRoll[lncnt]+"|"+IobjStudentName[lncnt]+"|"+ IobjStudentAddress[lncnt]+
-                   "|"+ IobjStudentMarks[lncnt]);
-               
+                for (int i = 0; i < numberOfStudents - 1; i++)
+                {
+                    string studentData = $"{studentRolls[i]}|{studentNames[i]}|{studentAddresses[i]}|{studentMarks[i]}";
+                    writer.Write(studentData);
+                }
             }
-            IobjSW.Flush();
-            IobjSW.Close();
-            IobjFS.Close();
         }
+
         public static void StudentReacordeSystem()
         {
             const int MAX_STUDENT = 50;
@@ -196,22 +211,7 @@ namespace MyConsoleApp
             int[] IobjStudentRoll = new int[MAX_STUDENT];
             
             int lnNumberOfStd = 1;
-            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\StudentDetail.txt",
-               FileMode.Open, FileAccess.Read);
-            StreamReader IobjSR = new StreamReader(IobjFS);
-            while (!IobjSR.EndOfStream)
-            {
-                string lsStudentDetails = (IobjSR.ReadLine());
-                string[] IobjStdRecords = lsStudentDetails.Split('|');
-
-
-                IobjStudentRoll[lnNumberOfStd-1] = int.Parse(IobjStdRecords[0]);
-                IobjStudentName[lnNumberOfStd-1] = IobjStdRecords[1];
-                IobjStudentAddress[lnNumberOfStd-1] = IobjStdRecords[2];
-                IobjStudentMarks[lnNumberOfStd-1]=double.Parse(IobjStdRecords[3]);
-                lnNumberOfStd++;
-
-            }
+           
             bool CheckModification = false;
             while(!CheckModification)
             {
