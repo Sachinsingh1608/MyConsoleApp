@@ -196,12 +196,118 @@ namespace MyConsoleApp
             {
                 for (int i = 0; i < numberOfStudents - 1; i++)
                 {
-                    string studentData = $"{studentRolls[i]}|{studentNames[i]}|{studentAddresses[i]}|{studentMarks[i]}";
-                    writer.Write(studentData);
+
+                    writer.Write(studentRolls[i]);
+                    writer.Write(studentNames[i]);
+                    writer.Write(studentAddresses[i]);
+                    writer.Write(studentMarks[i]);
                 }
             }
         }
+        public static void ReadBinaryFile()
+        {
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Student1Detail.dat",
+            FileMode.Append, FileAccess.Write))
+            using (BinaryReader IObjReader = new BinaryReader(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\TestBinary.dat", FileMode.Open)))
+            {
+                Console.WriteLine("Double Value:" + IObjReader.ReadDouble());
+                Console.WriteLine("String Value:" + IObjReader.ReadString());
+                Console.WriteLine("Boolean Value:" + IObjReader.ReadBoolean());
+            }
+        }
+  
+        public static void ReadBinaryFileFloat1To10()
+        {
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1.0To10.0.dat",
+        FileMode.Open, FileAccess.Read))
+            using (BinaryReader IObjReader = new BinaryReader(fs))
+            {
+                while (fs.Position < fs.Length)
+                {
+                    decimal lnNum = IObjReader.ReadDecimal();
+                    Console.WriteLine($"{lnNum}");
+                }
 
+            }
+        }
+        public static void WriteBinaryFileFloat1To10()
+        {
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1.0To10.0.dat", FileMode.Create)))
+            {
+                for (decimal lncnt = 1.0m; lncnt <= 10.0m; lncnt+=1.0m)
+                {
+                    IObjBW.Write(lncnt);
+                }
+            }
+        }
+        public static void ReadBinaryFileOneToTen()
+        {
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Onetoten.dat",
+        FileMode.Open, FileAccess.Read))
+            using (BinaryReader IObjReader = new BinaryReader(fs))
+            {
+                while (fs.Position < fs.Length)
+                {
+                    string lsNum = IObjReader.ReadString();
+                    Console.WriteLine($"{lsNum}");
+                }
+
+            }
+        }
+        public static void WriteBinaryFileOneToTen()
+        {
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Onetoten.dat", FileMode.Create)))
+            {
+                
+                    IObjBW.Write("one");
+                IObjBW.Write("two");
+                IObjBW.Write("three");
+                IObjBW.Write("four");
+                IObjBW.Write("five");
+                IObjBW.Write("six");
+                IObjBW.Write("seven");
+                IObjBW.Write("eight");
+                IObjBW.Write("nine");
+                IObjBW.Write("ten");
+      
+
+
+            }
+        }
+        public static void ReadBinaryFile1To10()
+        {
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1To10.dat",
+        FileMode.Open, FileAccess.Read))
+            using (BinaryReader IObjReader = new BinaryReader(fs))
+            {
+                while (fs.Position < fs.Length)
+                {
+                    int lnNum = IObjReader.ReadInt32();
+                    Console.WriteLine($"{lnNum}");
+                }
+
+            }
+        }
+        public static void WriteBinaryFile1To10()
+        {
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1To10.dat", 
+                FileMode.Create)))
+            {
+                for(int lncnt =1; lncnt <=10;lncnt++)
+                {
+                    IObjBW.Write(lncnt);
+                }
+            }
+        }
+        public static void WriteBinaryFile()
+        {
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\TestBinary.dat", FileMode.Create)))
+            {
+                IObjBW.Write(12.5);
+                IObjBW.Write("this is string data");
+                IObjBW.Write(true);
+            }
+        }
         public static void StudentReacordeSystem()
         {
             const int MAX_STUDENT = 50;
@@ -1599,8 +1705,16 @@ namespace MyConsoleApp
         }
         static void Main(string[] args)
         {
-
-            StudentReacordeSystem();
+            // WriteBinaryFile();
+            // ReadBinaryFile();
+            //WriteBinaryFile1To10();
+            //ReadBinaryFile1To10();
+            //WriteBinaryFileOneToTen();
+            //ReadBinaryFileOneToTen();
+            WriteBinaryFileFloat1To10();
+            ReadBinaryFileFloat1To10() ;
+            Console.ReadLine ();
+           // StudentReacordeSystem();
             //WriteData();
 
             // ReadData();
