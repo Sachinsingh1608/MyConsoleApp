@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -218,7 +219,8 @@ namespace MyConsoleApp
   
         public static void ReadBinaryFileFloat1To10()
         {
-            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1.0To10.0.dat",
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "1.0To10.0.dat",
         FileMode.Open, FileAccess.Read))
             using (BinaryReader IObjReader = new BinaryReader(fs))
             {
@@ -232,9 +234,10 @@ namespace MyConsoleApp
         }
         public static void WriteBinaryFileFloat1To10()
         {
-            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1.0To10.0.dat", FileMode.Create)))
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "1.0To10.0.dat", FileMode.Create)))
             {
-                for (decimal lncnt = 1.0m; lncnt <= 10.0m; lncnt+=1.0m)
+                for (decimal lncnt = 1.0m; lncnt <= 10.0m; lncnt++)
                 {
                     IObjBW.Write(lncnt);
                 }
@@ -242,7 +245,8 @@ namespace MyConsoleApp
         }
         public static void ReadBinaryFileOneToTen()
         {
-            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Onetoten.dat",
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "Onetoten.dat",
         FileMode.Open, FileAccess.Read))
             using (BinaryReader IObjReader = new BinaryReader(fs))
             {
@@ -256,10 +260,11 @@ namespace MyConsoleApp
         }
         public static void WriteBinaryFileOneToTen()
         {
-            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\Onetoten.dat", FileMode.Create)))
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "Onetoten.dat", FileMode.Create)))
             {
                 
-                    IObjBW.Write("one");
+                IObjBW.Write("one");
                 IObjBW.Write("two");
                 IObjBW.Write("three");
                 IObjBW.Write("four");
@@ -276,7 +281,8 @@ namespace MyConsoleApp
         }
         public static void ReadBinaryFile1To10()
         {
-            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1To10.dat",
+            using (FileStream fs = new FileStream("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "1To10.dat",
         FileMode.Open, FileAccess.Read))
             using (BinaryReader IObjReader = new BinaryReader(fs))
             {
@@ -290,7 +296,8 @@ namespace MyConsoleApp
         }
         public static void WriteBinaryFile1To10()
         {
-            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\1To10.dat", 
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "1To10.dat", 
                 FileMode.Create)))
             {
                 for(int lncnt =1; lncnt <=10;lncnt++)
@@ -301,7 +308,8 @@ namespace MyConsoleApp
         }
         public static void WriteBinaryFile()
         {
-            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\TestBinary.dat", FileMode.Create)))
+            using (BinaryWriter IObjBW = new BinaryWriter(File.Open("C:\\Users\\singh\\Desktop\\napasoft Assignment\\" +
+                "TestBinary.dat", FileMode.Create)))
             {
                 IObjBW.Write(12.5);
                 IObjBW.Write("this is string data");
@@ -1707,14 +1715,14 @@ namespace MyConsoleApp
         {
             // WriteBinaryFile();
             // ReadBinaryFile();
-            //WriteBinaryFile1To10();
+           // WriteBinaryFile1To10();
             //ReadBinaryFile1To10();
-            //WriteBinaryFileOneToTen();
-            //ReadBinaryFileOneToTen();
-            WriteBinaryFileFloat1To10();
-            ReadBinaryFileFloat1To10() ;
-            Console.ReadLine ();
-           // StudentReacordeSystem();
+          // WriteBinaryFileOneToTen();
+          //  ReadBinaryFileOneToTen();
+            //WriteBinaryFileFloat1To10();
+           // ReadBinaryFileFloat1To10() ;
+//Console.ReadLine ();
+            // StudentReacordeSystem();
             //WriteData();
 
             // ReadData();
@@ -1989,7 +1997,9 @@ namespace MyConsoleApp
              {
                  Console.WriteLine("Not Found");
              }
-             Console.ReadLine();*/
+            */
+           
+            Console.ReadLine();
         }
     }
 }
