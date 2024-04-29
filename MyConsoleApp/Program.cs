@@ -9,6 +9,34 @@ using System.Security.Principal;
 
 namespace MyConsoleApp
 {
+    public class Animal
+    {
+        private float _height;
+        public float Height
+        {
+            get { return _height; }
+            set { _height = value; }
+        }
+        private float _Weight;
+
+        public float Weight
+        {
+            get { return _Weight; }
+            set { _Weight = value; }
+        }
+        private int _Color;
+        private bool _Veg;
+        public bool Veg
+        {
+            get { return _Veg; }
+            set { _Veg = value; }
+        }
+        public virtual void AnimalSound()
+        {
+            Console.WriteLine("The Animal Makes A Sound");
+        }
+    }
+
     internal class Program
     {
        
@@ -1711,17 +1739,45 @@ namespace MyConsoleApp
             IobjFS.Close();
             
         }
+        public static void SeperateCombinedNumbers()
+        {
+            Console.WriteLine("Enter a String");
+            string lsStr = Console.ReadLine();
+            string lsTempStr = "";
+            for(int lncnt=0; lncnt<lsStr.Length; lncnt++)
+            {
+               char lcChar = lsStr[lncnt];
+                if(lcChar >= '0' && lcChar <= '9')
+                {
+                    lsTempStr += lcChar;
+                }
+                else
+                {
+                    if(lsTempStr.Length > 1) {
+                        Console.WriteLine("Numbers Are :- "+lsTempStr);
+                        lsTempStr = "";
+                    }
+                    else
+                    {
+                        lsTempStr = "";
+                    }
+                }
+            }
+            if(lsTempStr.Length > 1) {
+                Console.WriteLine("Numbers Are :- " + lsTempStr); 
+            }
+        }
         static void Main(string[] args)
         {
             // WriteBinaryFile();
             // ReadBinaryFile();
-           // WriteBinaryFile1To10();
+            // WriteBinaryFile1To10();
             //ReadBinaryFile1To10();
-          // WriteBinaryFileOneToTen();
-          //  ReadBinaryFileOneToTen();
+            // WriteBinaryFileOneToTen();
+            //  ReadBinaryFileOneToTen();
             //WriteBinaryFileFloat1To10();
-           // ReadBinaryFileFloat1To10() ;
-//Console.ReadLine ();
+            // ReadBinaryFileFloat1To10() ;
+            //Console.ReadLine ();
             // StudentReacordeSystem();
             //WriteData();
 
@@ -1729,7 +1785,7 @@ namespace MyConsoleApp
 
 
 
-
+           // SeperateCombinedNumbers();
 
 
 
@@ -1998,7 +2054,13 @@ namespace MyConsoleApp
                  Console.WriteLine("Not Found");
              }
             */
-           
+           Animal lobjMyanimal = new Animal();
+            lobjMyanimal.Height = 100.5f;
+            lobjMyanimal.Weight = 24.4f;
+          
+            lobjMyanimal.AnimalSound();
+
+
             Console.ReadLine();
         }
     }
