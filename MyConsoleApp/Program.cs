@@ -1744,7 +1744,8 @@ namespace MyConsoleApp
             Console.WriteLine("Enter a String");
             string lsStr = Console.ReadLine();
             string lsTempStr = "";
-            for(int lncnt=0; lncnt<lsStr.Length; lncnt++)
+              
+            for (int lncnt=0; lncnt<lsStr.Length; lncnt++)
             {
                char lcChar = lsStr[lncnt];
                 if(lcChar >= '0' && lcChar <= '9')
@@ -1753,7 +1754,8 @@ namespace MyConsoleApp
                 }
                 else
                 {
-                    if(lsTempStr.Length > 1) {
+                   
+                    if (lsTempStr.Length > 1) {
                         Console.WriteLine("Numbers Are :- "+lsTempStr);
                         lsTempStr = "";
                     }
@@ -1766,9 +1768,52 @@ namespace MyConsoleApp
             if(lsTempStr.Length > 1) {
                 Console.WriteLine("Numbers Are :- " + lsTempStr); 
             }
+           
+        
+           
+           
+        }
+        public static void TreasureHunt()
+        {
+            Random lnRan = new Random();
+           
+           int  lnDiamondPos = lnRan.Next(1, 100);
+            int lnScore = 0;
+            int lnChance = 3;
+            bool found = false;
+            while (lnChance > 0)
+            {
+                Console.WriteLine("Enter a Number");
+                int lnNum = int.Parse(Console.ReadLine());
+              
+                lnChance--;
+                for (int lncnt = lnNum; lncnt <= 100; lncnt += lnNum)
+                {
+                    if(lncnt == lnDiamondPos)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    lnScore = 100-(3- lnChance);
+                    Console.WriteLine("Dimaond Position:- " + lnDiamondPos + "Score is :- " + lnScore);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Attempt left:- " + lnChance);
+                }
+            }
+            if(found == false)
+            {
+                Console.WriteLine("Game Is Over And Diamond Position Is :- " + found);
+            }
         }
         static void Main(string[] args)
         {
+            //TreasureHunt();
             // WriteBinaryFile();
             // ReadBinaryFile();
             // WriteBinaryFile1To10();
@@ -1785,7 +1830,7 @@ namespace MyConsoleApp
 
 
 
-           // SeperateCombinedNumbers();
+             SeperateCombinedNumbers();
 
 
 
@@ -2054,11 +2099,10 @@ namespace MyConsoleApp
                  Console.WriteLine("Not Found");
              }
             */
-           Animal lobjMyanimal = new Animal();
-            lobjMyanimal.Height = 100.5f;
-            lobjMyanimal.Weight = 24.4f;
-          
-            lobjMyanimal.AnimalSound();
+          // Animal lobjMyanimal = new Animal();
+           // lobjMyanimal.Height = 100.5f;
+          //  lobjMyanimal.Weight = 24.4f;
+          // lobjMyanimal.AnimalSound();
 
 
             Console.ReadLine();
