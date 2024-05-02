@@ -1776,16 +1776,17 @@ namespace MyConsoleApp
         public static void TreasureHunt()
         {
             Random lnRan = new Random();
-           
-           int  lnDiamondPos = lnRan.Next(1, 100);
+
+            int lnDiamondPos = lnRan.Next(1,100);
             int lnScore = 0;
             int lnChance = 3;
-            bool found = false;
+     
             while (lnChance > 0)
             {
+                bool found = false;
                 Console.WriteLine("Enter a Number");
                 int lnNum = int.Parse(Console.ReadLine());
-              
+                int lncount = 1;
                 lnChance--;
                 for (int lncnt = lnNum; lncnt <= 100; lncnt += lnNum)
                 {
@@ -1794,26 +1795,23 @@ namespace MyConsoleApp
                         found = true;
                         break;
                     }
+                    lncount++;
                 }
                 if (found)
                 {
-                    lnScore = 100-(3- lnChance);
-                    Console.WriteLine("Dimaond Position:- " + lnDiamondPos + "Score is :- " + lnScore);
-                    break;
+                    lnScore += (100-lncount);
+    
                 }
                 else
                 {
                     Console.WriteLine("Attempt left:- " + lnChance);
                 }
             }
-            if(found == false)
-            {
-                Console.WriteLine("Game Is Over And Diamond Position Is :- " + found);
-            }
+            Console.WriteLine("Dimaond Position:- " + lnDiamondPos + " Score is :- " + lnScore);
         }
         static void Main(string[] args)
         {
-            //TreasureHunt();
+            TreasureHunt();
             // WriteBinaryFile();
             // ReadBinaryFile();
             // WriteBinaryFile1To10();
@@ -1830,7 +1828,7 @@ namespace MyConsoleApp
 
 
 
-             SeperateCombinedNumbers();
+            //SeperateCombinedNumbers();
 
 
 
