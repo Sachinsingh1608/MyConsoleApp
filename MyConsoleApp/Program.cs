@@ -1811,7 +1811,7 @@ namespace MyConsoleApp
         }
         static void Main(string[] args)
         {
-            TreasureHunt();
+            // TreasureHunt();
             // WriteBinaryFile();
             // ReadBinaryFile();
             // WriteBinaryFile1To10();
@@ -2097,12 +2097,24 @@ namespace MyConsoleApp
                  Console.WriteLine("Not Found");
              }
             */
-          // Animal lobjMyanimal = new Animal();
-           // lobjMyanimal.Height = 100.5f;
-          //  lobjMyanimal.Weight = 24.4f;
-          // lobjMyanimal.AnimalSound();
+            // Animal lobjMyanimal = new Animal();
+            // lobjMyanimal.Height = 100.5f;
+            //  lobjMyanimal.Weight = 24.4f;
+            // lobjMyanimal.AnimalSound();
+
+            Rectangle IobjRect = new Rectangle(12, 10, "Rectangle");
+            string lsShape = IobjRect.ToString();
+            Console.WriteLine(lsShape+" ");
 
 
+            Square IobjSquare = new Square(12,"Square");
+             lsShape = IobjSquare.ToString();
+            Console.WriteLine(lsShape + " ");
+
+
+            Circle IobjCircle = new Circle(7, "Circle");
+             lsShape = IobjCircle.ToString();
+            Console.WriteLine(lsShape + " ");
             Console.ReadLine();
         }
     }
