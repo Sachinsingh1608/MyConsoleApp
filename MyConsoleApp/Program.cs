@@ -2111,7 +2111,6 @@ namespace MyConsoleApp
              lsShape = IobjSquare.ToString();
             Console.WriteLine(lsShape + " ");
 
-
             Circle IobjCircle = new Circle(7, "Circle");
              lsShape = IobjCircle.ToString();
             Console.WriteLine(lsShape + " ");

@@ -25,9 +25,14 @@ namespace MyConsoleApp
         {
             get;
         }
+        public abstract double Perimeter
+        {
+            get;
+        }
+
         public override string ToString()
         {
-            return  $"{Id} Area = {Area:F2}";
+            return  $"{Id} Area = {Area:F2} and Perimeter = {Perimeter:F2}";
         }
     }
     public class Rectangle : Shape
@@ -44,6 +49,13 @@ namespace MyConsoleApp
             get
             {
                 return _Width * _Height;
+            }
+        }
+        public override double Perimeter
+        {
+            get
+            {
+                return 2 * (_Width + _Height);
             }
         }
     }
@@ -63,6 +75,13 @@ namespace MyConsoleApp
                 return _Side * _Side;
             }
         }
+        public override double Perimeter
+        {
+            get
+            {
+                return 4 * _Side;
+            }
+        }
     }
     public class Circle : Shape
     {
@@ -78,6 +97,13 @@ namespace MyConsoleApp
             get
             {
                 return System.Math.PI * _Radius * _Radius;
+            }
+        }
+        public override double Perimeter
+        {
+            get
+            {
+                return 2*System.Math.PI * _Radius;
             }
         }
     }
