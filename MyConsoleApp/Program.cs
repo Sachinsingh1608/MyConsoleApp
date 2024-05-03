@@ -2101,19 +2101,30 @@ namespace MyConsoleApp
             // lobjMyanimal.Height = 100.5f;
             //  lobjMyanimal.Weight = 24.4f;
             // lobjMyanimal.AnimalSound();
-
-            Rectangle IobjRect = new Rectangle(12, 10, "Rectangle");
-            string lsShape = IobjRect.ToString();
+            Console.WriteLine("____________________2DShapes_______________");
+            Square2D IobjSquare = new Square2D(10 ,"Square");
+            string lsShape = IobjSquare.ToString();
             Console.WriteLine(lsShape+" ");
+            Console.WriteLine("__________________________________________________");
+            Rectangle2D IobjRectangle = new Rectangle2D(10,20, "Rectangle");
+            Console.WriteLine(IobjRectangle.ToString());
+
+            Console.WriteLine("__________________________________________________");
+            Circle2D IobjCircle = new Circle2D(10,  "Circle");
+            Console.WriteLine(IobjCircle.ToString());
+
+            Console.WriteLine("____________________3DShapes_______________");
+
+            Cube IobjCube = new Cube(10,10, "Cube");
+            Console.WriteLine(IobjCube.ToString());
+            Console.WriteLine("__________________________________________________");
+            Cuboid IobjCuboid = new Cuboid(10, 10, 10,200,"Cuboid");
+            Console.WriteLine(IobjCuboid.ToString());
+            Console.WriteLine("__________________________________________________");
+            Sphere IobjSphere = new Sphere(10, 200, "Sphere");
+            Console.WriteLine(IobjSphere.ToString());
 
 
-            Square IobjSquare = new Square(12,"Square");
-             lsShape = IobjSquare.ToString();
-            Console.WriteLine(lsShape + " ");
-
-            Circle IobjCircle = new Circle(7, "Circle");
-             lsShape = IobjCircle.ToString();
-            Console.WriteLine(lsShape + " ");
             Console.ReadLine();
         }
     }
