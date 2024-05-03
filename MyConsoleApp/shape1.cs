@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace MyConsoleApp
 {
-    public abstract class Shape1
-    {
-       
-      
-    }
-    public abstract class Shape2D : Shape1
+    public abstract class Shapes
     {
         private string _Name;
 
-        public Shape2D(string isId)
+        public Shapes(string isId)
         {
             Id = isId;
         }
@@ -30,6 +25,14 @@ namespace MyConsoleApp
             {
                 _Name = value;
             }
+        }
+
+    }
+    public abstract class Shape2D : Shapes
+    {
+       public Shape2D (string isId) : base(isId)
+        {
+
         }
         public abstract double Area
         {
@@ -45,25 +48,11 @@ namespace MyConsoleApp
             return $"{Id} Area = {Area:F2} and Perimeter = {Perimeter:F2}";
         }
     }
-    public abstract class Shape3D : Shape1
+    public abstract class Shape3D : Shapes
     {
-        private string _Name;
-
-        public Shape3D(string isId)
+        public Shape3D(string isId) : base(isId)
         {
-            Id = isId;
-        }
 
-        public string Id
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                _Name = value;
-            }
         }
         public abstract double Volume
         {
@@ -87,7 +76,7 @@ namespace MyConsoleApp
     {
         private int _Width;
         private int _Height;
-        public Rectangle2D(int inWidth, int inHeight, string isId) : base(isId)
+        public Rectangle2D(int inWidth, int inHeight, string isId) :base(isId)
         {
             this._Width = inWidth;
             this._Height = inHeight;

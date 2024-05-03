@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 
 
@@ -2101,29 +2102,34 @@ namespace MyConsoleApp
             // lobjMyanimal.Height = 100.5f;
             //  lobjMyanimal.Weight = 24.4f;
             // lobjMyanimal.AnimalSound();
-            Console.WriteLine("____________________2DShapes_______________");
-            Square2D IobjSquare = new Square2D(10 ,"Square");
-            string lsShape = IobjSquare.ToString();
-            Console.WriteLine(lsShape+" ");
-            Console.WriteLine("__________________________________________________");
-            Rectangle2D IobjRectangle = new Rectangle2D(10,20, "Rectangle");
-            Console.WriteLine(IobjRectangle.ToString());
+            //Console.WriteLine("____________________2DShapes_______________");
+            //Square2D IobjSquare = new Square2D(10 ,"Square");
+            //string lsShape = IobjSquare.ToString();
+            //Console.WriteLine(lsShape+" ");
+            //Console.WriteLine("__________________________________________________");
+            //Rectangle2D IobjRectangle = new Rectangle2D(10,20, "Rectangle");
+            //Console.WriteLine(IobjRectangle.ToString());
 
-            Console.WriteLine("__________________________________________________");
-            Circle2D IobjCircle = new Circle2D(10,  "Circle");
-            Console.WriteLine(IobjCircle.ToString());
+            //Console.WriteLine("__________________________________________________");
+            //Circle2D IobjCircle = new Circle2D(10,  "Circle");
+            //Console.WriteLine(IobjCircle.ToString());
 
-            Console.WriteLine("____________________3DShapes_______________");
+            //Console.WriteLine("____________________3DShapes_______________");
 
-            Cube IobjCube = new Cube(10,10, "Cube");
-            Console.WriteLine(IobjCube.ToString());
-            Console.WriteLine("__________________________________________________");
-            Cuboid IobjCuboid = new Cuboid(10, 10, 10,200,"Cuboid");
-            Console.WriteLine(IobjCuboid.ToString());
-            Console.WriteLine("__________________________________________________");
-            Sphere IobjSphere = new Sphere(10, 200, "Sphere");
-            Console.WriteLine(IobjSphere.ToString());
+            //Cube IobjCube = new Cube(10,10, "Cube");
+            //Console.WriteLine(IobjCube.ToString());
+            //Console.WriteLine("__________________________________________________");
+            //Cuboid IobjCuboid = new Cuboid(10, 10, 10,200,"Cuboid");
+            //Console.WriteLine(IobjCuboid.ToString());
+            //Console.WriteLine("__________________________________________________");
+            //Sphere IobjSphere = new Sphere(10, 200, "Sphere");
+            //Console.WriteLine(IobjSphere.ToString());
 
+
+            PolyMorphism IobjPoly = new PolyMorphism();
+            Console.WriteLine("3 parameters :- "+IobjPoly.Add(2, 4, 5));
+            Console.WriteLine("2 parameters :- "+IobjPoly.Add(2, 4));
+            Console.WriteLine("string parameter :- "+IobjPoly.Add("123","234"));
 
             Console.ReadLine();
         }
