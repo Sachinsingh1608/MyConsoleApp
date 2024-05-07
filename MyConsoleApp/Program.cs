@@ -2130,8 +2130,23 @@ namespace MyConsoleApp
             //Console.WriteLine("3 parameters :- "+IobjPoly.Add(2, 4, 5));
             //Console.WriteLine("2 parameters :- "+IobjPoly.Add(2, 4));
             //Console.WriteLine("string parameter :- "+IobjPoly.Add("123","234"));
-            Business IobjBus = new Business("1234567891", "jamshedpur", 500000m, 2023, 5000m);
-            Console.WriteLine(IobjBus.ToString());
+            //Business IobjBus = new Business("1234567891", "jamshedpur", 500000m, 2023, 5000m);
+            //Console.WriteLine(IobjBus.ToString());
+
+
+            SavingAccount IobjSavingAcc = new SavingAccount();
+            IobjSavingAcc.InterestRate = 5;
+            IobjSavingAcc.CustomerID = 1;
+            IobjSavingAcc.CustomerDOB= new DateTime(1990, 5, 15);
+            IobjSavingAcc.BankName = "Bank Of India";
+            IobjSavingAcc.BankBranch = "Sakchi";
+            IobjSavingAcc.CustomerName = "Sachin";
+            IobjSavingAcc.MonthlyAvgBal = 2000f;
+            Console.Write(IobjSavingAcc.Interest()+"  ");
+            Console.Write(IobjSavingAcc.AccountType);
+
+
+
 
             Console.ReadLine();
         }
