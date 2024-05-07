@@ -2137,13 +2137,38 @@ namespace MyConsoleApp
             SavingAccount IobjSavingAcc = new SavingAccount();
             IobjSavingAcc.InterestRate = 5;
             IobjSavingAcc.CustomerID = 1;
-            IobjSavingAcc.CustomerDOB= new DateTime(1990, 5, 15);
+            IobjSavingAcc.CustomerDOB= new DateTime(1999, 8, 16);
             IobjSavingAcc.BankName = "Bank Of India";
             IobjSavingAcc.BankBranch = "Sakchi";
             IobjSavingAcc.CustomerName = "Sachin";
             IobjSavingAcc.MonthlyAvgBal = 2000f;
-            Console.Write(IobjSavingAcc.Interest()+"  ");
-            Console.Write(IobjSavingAcc.AccountType);
+            Console.Write("Name :- " + IobjSavingAcc.CustomerName);
+            Console.Write("  Interest  :-"+IobjSavingAcc.Interest()+"  ");
+            Console.Write("  Account Type :-"+IobjSavingAcc.AccountType);
+            Console.Write("  MonthlyAvgBal :-" + IobjSavingAcc.MonthlyAvgBal);
+            Console.Write("  BANK NAME :-" + IobjSavingAcc.BankName);
+            Console.Write("  BANk BRANCH :-" + IobjSavingAcc.BankBranch);
+
+            Console.WriteLine("  Age :-"+IobjSavingAcc.CustomerAge);
+
+            Console.WriteLine("______________________________________________");
+            FDAccount IobjSavingAcc1 = new FDAccount();
+            IobjSavingAcc1.InterestRate = 5;
+            IobjSavingAcc1.CustomerID = 1;
+            IobjSavingAcc1.CustomerDOB = new DateTime(1999, 8, 16);
+            IobjSavingAcc1.BankName = "Bank Of India";
+            IobjSavingAcc1.BankBranch = "Sakchi";
+            IobjSavingAcc1.CustomerName = "Sachin";
+            IobjSavingAcc1.PRAmount = 100000;
+            Console.Write("Name :- " + IobjSavingAcc1.CustomerName);
+            Console.Write("  Interest  :-" + IobjSavingAcc1.Interest() + "  ");
+            Console.Write("  Account Type :-" + IobjSavingAcc1.AccountType);
+         
+            Console.Write("  BANK NAME :-" + IobjSavingAcc1.BankName);
+            Console.Write("  BANk BRANCH :-" + IobjSavingAcc1.BankBranch);
+
+            Console.Write("  Age :-" + IobjSavingAcc.CustomerAge);
+
 
 
 
