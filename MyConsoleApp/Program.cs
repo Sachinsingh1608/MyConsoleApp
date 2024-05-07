@@ -2126,10 +2126,12 @@ namespace MyConsoleApp
             //Console.WriteLine(IobjSphere.ToString());
 
 
-            PolyMorphism IobjPoly = new PolyMorphism();
-            Console.WriteLine("3 parameters :- "+IobjPoly.Add(2, 4, 5));
-            Console.WriteLine("2 parameters :- "+IobjPoly.Add(2, 4));
-            Console.WriteLine("string parameter :- "+IobjPoly.Add("123","234"));
+            //PolyMorphism IobjPoly = new PolyMorphism();
+            //Console.WriteLine("3 parameters :- "+IobjPoly.Add(2, 4, 5));
+            //Console.WriteLine("2 parameters :- "+IobjPoly.Add(2, 4));
+            //Console.WriteLine("string parameter :- "+IobjPoly.Add("123","234"));
+            Business IobjBus = new Business("1234567891", "jamshedpur", 500000m, 2023, 5000m);
+            Console.WriteLine(IobjBus.ToString());
 
             Console.ReadLine();
         }

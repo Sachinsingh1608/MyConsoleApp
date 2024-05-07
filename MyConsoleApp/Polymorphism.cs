@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyConsoleApp
 {
-    internal class PolyMorphism
+    public class PolyMorphism
     {
         public int Add(int a,int b,int c)
         {
