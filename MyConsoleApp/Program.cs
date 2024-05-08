@@ -2134,42 +2134,59 @@ namespace MyConsoleApp
             //Console.WriteLine(IobjBus.ToString());
 
 
-            SavingAccount IobjSavingAcc = new SavingAccount();
-            IobjSavingAcc.InterestRate = 5;
-            IobjSavingAcc.CustomerID = 1;
-            IobjSavingAcc.CustomerDOB= new DateTime(1999, 8, 16);
-            IobjSavingAcc.BankName = "Bank Of India";
-            IobjSavingAcc.BankBranch = "Sakchi";
-            IobjSavingAcc.CustomerName = "Sachin";
-            IobjSavingAcc.MonthlyAvgBal = 2000f;
-            Console.Write("Name :- " + IobjSavingAcc.CustomerName);
-            Console.Write("  Interest  :-"+IobjSavingAcc.Interest()+"  ");
-            Console.Write("  Account Type :-"+IobjSavingAcc.AccountType);
-            Console.Write("  MonthlyAvgBal :-" + IobjSavingAcc.MonthlyAvgBal);
-            Console.Write("  BANK NAME :-" + IobjSavingAcc.BankName);
-            Console.Write("  BANk BRANCH :-" + IobjSavingAcc.BankBranch);
+            //SavingAccount IobjSavingAcc = new SavingAccount();
+            //IobjSavingAcc.InterestRate = 5;
+            //IobjSavingAcc.CustomerID = 1;
+            //IobjSavingAcc.CustomerDOB= new DateTime(1999, 8, 16);
+            //IobjSavingAcc.BankName = "Bank Of India";
+            //IobjSavingAcc.BankBranch = "Sakchi";
+            //IobjSavingAcc.CustomerName = "Sachin";
+            //IobjSavingAcc.MonthlyAvgBal = 2000f;
+            //Console.Write("Name :- " + IobjSavingAcc.CustomerName);
+            //Console.Write("  Interest  :-"+IobjSavingAcc.Interest()+"  ");
+            //Console.Write("  Account Type :-"+IobjSavingAcc.AccountType);
+            //Console.Write("  MonthlyAvgBal :-" + IobjSavingAcc.MonthlyAvgBal);
+            //Console.Write("  BANK NAME :-" + IobjSavingAcc.BankName);
+            //Console.Write("  BANk BRANCH :-" + IobjSavingAcc.BankBranch);
 
-            Console.WriteLine("  Age :-"+IobjSavingAcc.CustomerAge);
+            //Console.WriteLine("  Age :-"+IobjSavingAcc.CustomerAge);
 
-            Console.WriteLine("______________________________________________");
-            FDAccount IobjSavingAcc1 = new FDAccount();
-            IobjSavingAcc1.InterestRate = 5;
-            IobjSavingAcc1.CustomerID = 1;
-            IobjSavingAcc1.CustomerDOB = new DateTime(1999, 8, 16);
-            IobjSavingAcc1.BankName = "Bank Of India";
-            IobjSavingAcc1.BankBranch = "Sakchi";
-            IobjSavingAcc1.CustomerName = "Sachin";
-            IobjSavingAcc1.PRAmount = 100000;
-            Console.Write("Name :- " + IobjSavingAcc1.CustomerName);
-            Console.Write("  Interest  :-" + IobjSavingAcc1.Interest() + "  ");
-            Console.Write("  Account Type :-" + IobjSavingAcc1.AccountType);
-         
-            Console.Write("  BANK NAME :-" + IobjSavingAcc1.BankName);
-            Console.Write("  BANk BRANCH :-" + IobjSavingAcc1.BankBranch);
+            //Console.WriteLine("______________________________________________");
+            //FDAccount IobjSavingAcc1 = new FDAccount();
+            //IobjSavingAcc1.InterestRate = 5;
+            //IobjSavingAcc1.CustomerID = 1;
+            //IobjSavingAcc1.CustomerDOB = new DateTime(1999, 8, 16);
+            //IobjSavingAcc1.BankName = "Bank Of India";
+            //IobjSavingAcc1.BankBranch = "Sakchi";
+            //IobjSavingAcc1.CustomerName = "Sachin";
+            //IobjSavingAcc1.PRAmount = 100000;
+            //Console.Write("Name :- " + IobjSavingAcc1.CustomerName);
+            //Console.Write("  Interest  :-" + IobjSavingAcc1.Interest() + "  ");
+            //Console.Write("  Account Type :-" + IobjSavingAcc1.AccountType);
 
-            Console.Write("  Age :-" + IobjSavingAcc.CustomerAge);
+            //Console.Write("  BANK NAME :-" + IobjSavingAcc1.BankName);
+            //Console.Write("  BANk BRANCH :-" + IobjSavingAcc1.BankBranch);
+
+            //Console.Write("  Age :-" + IobjSavingAcc.CustomerAge);
 
 
+
+            //List<Student> IobjStudentList = new List<Student>();
+
+            //IobjStudentList.Add(new Student(1, "Ramesh"));
+            //IobjStudentList.Add(new Student(2, "Sita"));
+            //IobjStudentList.Add(new Student(3, "Raju"));
+            //IobjStudentList.Add(new Student(4, "Natwar"));
+
+            //Console.WriteLine("RollNo.      |        Name");
+            //foreach(Student Iobjstudent in IobjStudentList)
+            //{
+            //    Console.WriteLine("{0}                   {1}", Iobjstudent.mnRollNo, Iobjstudent.msName);
+            //}
+
+            SnakeAndLadder IobjSnakeAndLadder = new SnakeAndLadder(
+                );
+            IobjSnakeAndLadder.PlayGame();
 
 
 

@@ -54,7 +54,7 @@ namespace MyConsoleApp
                 _MonthlyAvgBal = value;
             }
         }
-        public float InterestRate
+        public float InterestRate 
         {
             get { return _InterestRate; }
             set
