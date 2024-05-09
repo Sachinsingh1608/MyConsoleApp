@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace MyConsoleApp
@@ -27,25 +28,41 @@ namespace MyConsoleApp
 
 
             // Snake Create
+            HashSet<int> IobjSet = new HashSet<int>();
+            Random IobjRandom  = new Random();
+            for(int lncnt =0; lncnt<8; )
+            {
+                int lnst = IobjRandom.Next(1, 101);
+                int lnend = IobjRandom.Next(1, lnst);
+                if(!IobjSet.Contains(lnst) && !IobjSet.Contains(lnend))
+                {
+                    _Iobjboard[lnst]=lnend;
+                    IobjSet.Add(lnst);
+                    IobjSet.Add(lnend);
+                    lncnt++;
+                    Console.WriteLine(_Iobjboard[lnst]);
 
-            _Iobjboard[62] = 19;
-            _Iobjboard[64] = 60;
-            _Iobjboard[54] = 34;
-            _Iobjboard[87] = 36;
-            _Iobjboard[93] = 73;
-            _Iobjboard[95] = 75;
-            _Iobjboard[96] = 79;
-
-
+                }
+            }
             //ladder
-            _Iobjboard[4] = 14;
-            _Iobjboard[9] = 31;
-            _Iobjboard[2] = 38;
-            _Iobjboard[21] = 42;
-            _Iobjboard[51] = 67;
-            _Iobjboard[28] = 84;
-            _Iobjboard[81] = 99;
-            _Iobjboard[72] = 91;
+            Console.WriteLine("Ladder");
+            for (int lncnt = 0; lncnt < 8; )
+            {
+                int lnst = IobjRandom.Next(1, 100);
+                int lnend = IobjRandom.Next(lnst+1, 100);
+                if (!IobjSet.Contains(lnst) && !IobjSet.Contains(lnend))
+                {
+                    -_Iobjboard[lnst] = lnend;
+                    IobjSet.Add(lnst);
+                    IobjSet.Add(lnend);
+                    lncnt++;
+                   Console.WriteLine(_Iobjboard[lnst]);
+
+
+                }
+           
+            }
+          
 
 
         }
