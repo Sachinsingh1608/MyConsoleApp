@@ -52,7 +52,7 @@ namespace MyConsoleApp
                 int lnend = IobjRandom.Next(lnst+1, 100);
                 if (!IobjSet.Contains(lnst) && !IobjSet.Contains(lnend))
                 {
-                    -_Iobjboard[lnst] = lnend;
+                    _Iobjboard[lnst] = lnend;
                     IobjSet.Add(lnst);
                     IobjSet.Add(lnend);
                     lncnt++;
