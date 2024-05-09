@@ -2184,9 +2184,10 @@ namespace MyConsoleApp
             //    Console.WriteLine("{0}                   {1}", Iobjstudent.mnRollNo, Iobjstudent.msName);
             //}
 
-            SnakeAndLadder IobjSnakeAndLadder = new SnakeAndLadder(
-                );
+            SnakeAndLadder IobjSnakeAndLadder = new SnakeAndLadder();
             IobjSnakeAndLadder.PlayGame();
+
+
 
 
 

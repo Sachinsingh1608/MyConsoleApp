@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MyConsoleApp
 {
     public class SnakeAndLadder
     {
         private int[] _Iobjboard;
-     
+
         private int[] _IobjplayerPos;
-        
+
 
         public SnakeAndLadder()
         {
@@ -20,10 +17,10 @@ namespace MyConsoleApp
 
             CreateSnakeAndLaddeBoardStructure();
         }
-        private void  CreateSnakeAndLaddeBoardStructure()
+        private void CreateSnakeAndLaddeBoardStructure()
         {
             // create Board;
-            for(int lnCnt = 0; lnCnt < _Iobjboard.Length; lnCnt++)
+            for (int lnCnt = 0; lnCnt < _Iobjboard.Length; lnCnt++)
             {
                 _Iobjboard[lnCnt] = lnCnt + 1;
             }
@@ -32,7 +29,7 @@ namespace MyConsoleApp
             // Snake Create
 
             _Iobjboard[62] = 19;
-            _Iobjboard[64] = 60 ;
+            _Iobjboard[64] = 60;
             _Iobjboard[54] = 34;
             _Iobjboard[87] = 36;
             _Iobjboard[93] = 73;
@@ -47,48 +44,71 @@ namespace MyConsoleApp
             _Iobjboard[21] = 42;
             _Iobjboard[51] = 67;
             _Iobjboard[28] = 84;
-            _Iobjboard[80] = 99;
+            _Iobjboard[81] = 99;
             _Iobjboard[72] = 91;
 
 
         }
         public void PlayGame()
         {
-            int currentPlayer = 0;
-            while (true)
+            int lncurrentPlayer = 0;
+            Console.WriteLine("Enter 1 For  Start Game");
+            int lnSt = int.Parse(Console.ReadLine());
+            bool lnGameWin = true;
+            while (lnGameWin && lnSt != 0)
             {
-                Console.WriteLine("Current Player :- " + (currentPlayer + 1)+ "   And Previous Pos :-  "+
-                    _IobjplayerPos[currentPlayer]);
-                PlayTurn(currentPlayer);
-               
-                Console.ReadKey();
-                if (_IobjplayerPos[currentPlayer] == 100)
+                Console.WriteLine("Current Player :- " + (lncurrentPlayer + 1) + "   And Previous Pos :-  " +
+                    _IobjplayerPos[lncurrentPlayer]);
+                PlayTurn(lncurrentPlayer);
+
+
+
+
+                if (_IobjplayerPos[lncurrentPlayer] == 100)
                 {
-                    Console.WriteLine($"Player {currentPlayer + 1} wins!");
+                    Console.WriteLine($"Player {lncurrentPlayer + 1} wins!");
                     break;
                 }
-                currentPlayer = (currentPlayer + 1) % 2;
+
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+               
+               
+            
+                if (keyInfo.Key != ConsoleKey.Enter)
+                {
+                    Console.WriteLine();
+                    if (lncurrentPlayer == 0)
+                        Console.WriteLine("Win Player  :-   " + (lncurrentPlayer + 2)+"     Player  "+(lncurrentPlayer+1)+" exit");
+                    else
+                        Console.WriteLine("Win Player :-  " + (lncurrentPlayer) + "     Player  " + (lncurrentPlayer+1) + " exit");
+
+                    break;
+                }
+                lncurrentPlayer = (lncurrentPlayer + 1) % 2;
                 Console.Clear();
 
             }
         }
-        private void PlayTurn(int player)
+        private void PlayTurn(int inplayer)
         {
-           
-            Random lnrandom = new Random();
-            int diceValue = lnrandom.Next(1, 7);
+            Random random = new Random();
+            int diceValue = random.Next(1, 7);
 
-
-            _IobjplayerPos[player] += diceValue;
-
- 
-            if (_IobjplayerPos[player] < _Iobjboard.Length)
+            if (_IobjplayerPos[inplayer] == 0 && diceValue != 1)
             {
-                _IobjplayerPos[player] = _Iobjboard[_IobjplayerPos[player] - 1];
+                Console.WriteLine($"Player {inplayer + 1} Rolled {diceValue}, But need a 1 to Start a Game");
+                return;
+            }
+            int lnnewPosition = _IobjplayerPos[inplayer] + diceValue;
+
+            if (lnnewPosition <= _Iobjboard.Length)
+            {
+                _IobjplayerPos[inplayer] = _Iobjboard[lnnewPosition - 1];
             }
 
-            Console.WriteLine($"Player {player + 1} rolled {diceValue}, moved to position {_IobjplayerPos[player]}");
+            Console.WriteLine($"Player {inplayer + 1} rolled {diceValue}, moved to position {_IobjplayerPos[inplayer]}");
         }
+
     }
 
 
