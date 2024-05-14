@@ -2216,55 +2216,120 @@ namespace MyConsoleApp
             //     Console.WriteLine(list[index]);
             // }
             //Console.WriteLine( list.Contains(0));
-            string data_Loc = "C:\\Employee\\Employee.json";
+            string data_Loc = "C:\\Employee\\Employee_New1.json";
             List<Employee> lEmpList = new List<Employee>();
             Employee lObjEmp = new Employee();
-            lObjEmp.LoadEmp(ref lEmpList);
+           lObjEmp.LoadEmp(ref lEmpList);
             int lnUserInput;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Enter  \n0:Exit\n1:Add Employee\n2:List Employees\n" +
                     "3:Find Employees\n" +
                     "4:Save Employee Record\n");
                  lnUserInput = int.Parse(Console.ReadLine());
-                switch(lnUserInput)
+                switch (lnUserInput)
                 {
                     case 1:
                         Employee lemp = new Employee();
                         lemp.ReadInput();
-                        if(lEmpList.Count==0)
+                        if (lEmpList.Count == 0)
                             lemp.emp_Id = 1;
                         else
-                        lemp.emp_Id = lEmpList.Last().emp_Id + 1;
+                            lemp.emp_Id = lEmpList.Last().emp_Id + 1;
                         lEmpList.Add(lemp);
                         break;
                     case 2:
                         foreach (var lEmpTemp in lEmpList)
                             lEmpTemp.List();
+                        Console.ReadKey();
                         break;
-                        
 
-                case 3:
 
-                        Console.WriteLine("Enter A first Name OF Employee");
-                        string lsname = Console.ReadLine();
+                    case 3:
+
+                        Console.WriteLine("Press 1 Find Through First Name");
+                        Console.WriteLine("Press 2 Find Through DOB (MM/DD/YYYY)");
+                        Console.WriteLine("Press 3 Find Through Dept ID");
+                        string  lsChoice = Console.ReadLine();
                         Employee lempFind = new Employee();
                         bool lbFind = false;
-                        foreach (var lEmpTemp in lEmpList)
+                        switch (lsChoice)
                         {
-                            if(lEmpTemp.first_Name == lsname)
-                            {
-                                lEmpTemp.List();
-                                lbFind = true;
-                            }
+
+
+                            case "1":
+                                Console.WriteLine("Enter First Name");
+                                string lsname = Console.ReadLine();
+                                //foreach (var lEmpTemp in lEmpList)
+                                //{
+                                //    string lstempString = lEmpTemp.first_Name;
+                                //    bool lbfoundName = true;
+                                //   for(int lncnt=0; lncnt<lsname.Length; lncnt++)
+                                //   {
+                                //        if (lsname[lncnt] != lstempString[lncnt])
+                                //        {
+                                //            lbfoundName = false;
+                                //            break;
+                                //        }
+                                //   }
+                                //    if (lbfoundName)
+                                //    {
+                                //        lEmpTemp.List();
+                                //        lbFind = true;
+                                //    }
+
+                                //}
+                                List<Employee> EmpRecord = lEmpList.FindAll(x => x.first_Name.Contains(lsname));
+
+
+                                foreach (Employee IobjEmp in EmpRecord)
+                                    IobjEmp.List();
+                                if (EmpRecord.Count != 0)
+                                {
+                                    lbFind = true;
+                                }
+                                break;
+
+
+                            case "2":
+                                Console.WriteLine("Enter DOB (MM/DD/YYYY)");
+                                DateTime ldDob = DateTime.Parse(Console.ReadLine());
+                                foreach (var lEmpTemp in lEmpList)
+                                {
+                                    if (lEmpTemp.birth_date == ldDob)
+                                    {
+                                        lEmpTemp.List();
+                                        lbFind = true;
+                                        break;
+                                    }
+                                }
+                                break;
+
+
+                            case "3":
+                                Console.WriteLine("Enter Dept ID");
+                                int lnDeptID = int.Parse(Console.ReadLine());
+                                foreach (var lEmpTemp in lEmpList)
+                                {
+                                    if (lEmpTemp.dept_id == lnDeptID)
+                                    {
+                                        lEmpTemp.List();
+                                        lbFind = true;
+                                        break;
+                                    }
+                                }
+                                break;
+
                         }
+                        
                         if (!lbFind)
                             Console.WriteLine("Not Found");
-                       
-                            break;
+                        Console.ReadKey();
+                        break;
                     case 4:
                         string JsonString = JsonSerializer.Serialize(lEmpList);
-                        File.AppendAllText(data_Loc, JsonString);
+                        File.WriteAllText(data_Loc, JsonString);
                         break;
 
                     default:
@@ -2273,8 +2338,7 @@ namespace MyConsoleApp
                 }
 
             } while (lnUserInput!=0);
-
-
+        
            
         }
     }

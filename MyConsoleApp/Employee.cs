@@ -47,11 +47,11 @@ namespace MyConsoleApp
         {
             string lsDeptName = "";
             Console.WriteLine($"Id : {emp_Id} ,Name : {first_Name} {last_Name} , DOB : {birth_date} , Salary : {salary}" +
-                $"Address : {address} ");
+                $"Address : {address}  Dept ID : {dept_id}");
         }
         public void LoadEmp(ref List<Employee> IobjEmpList)
         {
-            string data_Loc = "C:\\Employee\\Employee.json";
+            string data_Loc = "C:\\Employee\\Employee_New1.json";
             string jsonString = File.ReadAllText(data_Loc);
             IobjEmpList = JsonSerializer.Deserialize<List<Employee>>(jsonString);
 
@@ -59,19 +59,19 @@ namespace MyConsoleApp
         public void ReadInput()
         {
             Console.WriteLine("Enter A  First Name");
-            this.first_Name = (Console.ReadLine());
+            first_Name = (Console.ReadLine());
             Console.WriteLine("Enter A  Last Name");
-            this.last_Name = (Console.ReadLine());
-            Console.WriteLine("Enter A  Birth Date");
-            this.birth_date = DateTime.Parse(Console.ReadLine());
+            last_Name = (Console.ReadLine());
+            Console.WriteLine("Enter A  Birth Date MM/DD/YYYY");
+          birth_date = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Enter your  Gender");
-            this.gender = Console.ReadLine();
+           gender = Console.ReadLine();
             Console.WriteLine("Enter A Salary");
-            this.salary= float.Parse(Console.ReadLine());
+            salary= float.Parse(Console.ReadLine());
             Console.WriteLine("Enter your  Address");
-            this.address= Console.ReadLine();
+            address= Console.ReadLine();
             Console.WriteLine("Enter Dept_id");
-            this.dept_id= int.Parse(Console.ReadLine());
+            dept_id= int.Parse(Console.ReadLine());
 
 
         }
