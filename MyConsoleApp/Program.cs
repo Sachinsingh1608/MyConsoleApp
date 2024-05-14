@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 
 namespace MyConsoleApp
@@ -2183,15 +2187,95 @@ namespace MyConsoleApp
             //{
             //    Console.WriteLine("{0}                   {1}", Iobjstudent.mnRollNo, Iobjstudent.msName);
             //}
+            //Console.WriteLine("Enter Number Of Player");
+            //int lnNumPlayer = int.Parse(Console.ReadLine());
 
-            SnakeAndLadder IobjSnakeAndLadder = new SnakeAndLadder();
-            IobjSnakeAndLadder.PlayGame();
+            //SnakeAndLadder IobjSnakeAndLadder = new SnakeAndLadder(lnNumPlayer);
+
+            //    TicTacToe game = new TicTacToe();
+            //bool lbExtGame = false;
+            //while (!lbExtGame)
+            //{
+            //    game.PrintBoard();
+
+            //    Console.WriteLine($"Player {game.currentPlayer}'s turn");
+            //    Console.Write("Enter row (0-2): ");
+            //    int row = int.Parse(Console.ReadLine());
+            //    Console.Write("Enter column (0-2): ");
+            //    int col = int.Parse(Console.ReadLine());
+
+            //     lbExtGame = game.MakeMove(row, col);
+            //}
+
+            //List<int> list = new List<int>();
+            // list.Add(0);
+            // list.Add(1);    
+            // list.Add(2);
+            // for(int index = 0; index < list.Count; index++)
+            // {
+            //     Console.WriteLine(list[index]);
+            // }
+            //Console.WriteLine( list.Contains(0));
+            string data_Loc = "C:\\Employee\\Employee.json";
+            List<Employee> lEmpList = new List<Employee>();
+            Employee lObjEmp = new Employee();
+            lObjEmp.LoadEmp(ref lEmpList);
+            int lnUserInput;
+            do
+            {
+                Console.WriteLine("Enter  \n0:Exit\n1:Add Employee\n2:List Employees\n" +
+                    "3:Find Employees\n" +
+                    "4:Save Employee Record\n");
+                 lnUserInput = int.Parse(Console.ReadLine());
+                switch(lnUserInput)
+                {
+                    case 1:
+                        Employee lemp = new Employee();
+                        lemp.ReadInput();
+                        if(lEmpList.Count==0)
+                            lemp.emp_Id = 1;
+                        else
+                        lemp.emp_Id = lEmpList.Last().emp_Id + 1;
+                        lEmpList.Add(lemp);
+                        break;
+                    case 2:
+                        foreach (var lEmpTemp in lEmpList)
+                            lEmpTemp.List();
+                        break;
+                        
+
+                case 3:
+
+                        Console.WriteLine("Enter A first Name OF Employee");
+                        string lsname = Console.ReadLine();
+                        Employee lempFind = new Employee();
+                        bool lbFind = false;
+                        foreach (var lEmpTemp in lEmpList)
+                        {
+                            if(lEmpTemp.first_Name == lsname)
+                            {
+                                lEmpTemp.List();
+                                lbFind = true;
+                            }
+                        }
+                        if (!lbFind)
+                            Console.WriteLine("Not Found");
+                       
+                            break;
+                    case 4:
+                        string JsonString = JsonSerializer.Serialize(lEmpList);
+                        File.AppendAllText(data_Loc, JsonString);
+                        break;
+
+                    default:
+                        lnUserInput = 0;
+                        break;
+                }
+
+            } while (lnUserInput!=0);
 
 
-
-
-
-            Console.ReadLine();
+           
         }
     }
 }
