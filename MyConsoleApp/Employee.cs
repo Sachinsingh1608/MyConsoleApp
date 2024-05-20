@@ -46,8 +46,8 @@ namespace MyConsoleApp
         public void List()
         {
             string lsDeptName = "";
-            Console.WriteLine($"Id : {emp_Id} ,Name : {first_Name} {last_Name} , DOB : {birth_date} , Salary : {salary}" +
-                $"Address : {address}  Dept ID : {dept_id}");
+            Console.WriteLine($"Id : {emp_Id} | Name : {first_Name} {last_Name} | DOB : {birth_date} | Salary : {salary}" +
+                $"| Address : {address} | Dept ID : {dept_id}");
         }
         public void LoadEmp(ref List<Employee> IobjEmpList)
         {

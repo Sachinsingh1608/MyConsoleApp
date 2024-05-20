@@ -2216,130 +2216,189 @@ namespace MyConsoleApp
             //     Console.WriteLine(list[index]);
             // }
             //Console.WriteLine( list.Contains(0));
-            string data_Loc = "C:\\Employee\\Employee_New1.json";
-            List<Employee> lEmpList = new List<Employee>();
-            Employee lObjEmp = new Employee();
-           lObjEmp.LoadEmp(ref lEmpList);
-            int lnUserInput;
+            //    string data_Loc = "C:\\Employee\\Employee_New1.json";
+            //    List<Employee> lEmpList = new List<Employee>();
+            //    Employee lObjEmp = new Employee();
+            //   lObjEmp.LoadEmp(ref lEmpList);
+            //    int lnUserInput;
+            //    do
+            //    {
+            //        Console.Clear();
+            //        Console.WriteLine("Enter  \n0:Exit\n1:Add Employee\n2:List Employees\n" +
+            //            "3:Find Employees\n" +
+            //            "4:Save Employee Record\n");
+            //         lnUserInput = int.Parse(Console.ReadLine());
+            //        switch (lnUserInput)
+            //        {
+            //            case 1:
+            //                Employee lemp = new Employee();
+            //                lemp.ReadInput();
+            //                if (lEmpList.Count == 0)
+            //                    lemp.emp_Id = 1;
+            //                else
+            //                    lemp.emp_Id = lEmpList.Last().emp_Id + 1;
+            //                lEmpList.Add(lemp);
+            //                break;
+            //            case 2:
+            //                foreach (var lEmpTemp in lEmpList)
+            //                    lEmpTemp.List();
+            //                Console.ReadKey();
+            //                break;
+
+
+            //            case 3:
+
+            //                Console.WriteLine("Press 1 Find Through First Name");
+            //                Console.WriteLine("Press 2 Find Through DOB (MM/DD/YYYY)");
+            //                Console.WriteLine("Press 3 Find Through Dept ID");
+            //                Console.WriteLine("Press 4 Find Through YEAR");
+            //                string  lsChoice = Console.ReadLine();
+            //                Employee lempFind = new Employee();
+            //                bool lbFind = false;
+            //                switch (lsChoice)
+            //                {
+
+
+            //                    case "1":
+            //                        Console.WriteLine("Enter First Name");
+            //                        string lsname = Console.ReadLine();
+            //                        //foreach (var lEmpTemp in lEmpList)
+            //                        //{
+            //                        //    string lstempString = lEmpTemp.first_Name;
+            //                        //    bool lbfoundName = true;
+            //                        //   for(int lncnt=0; lncnt<lsname.Length; lncnt++)
+            //                        //   {
+            //                        //        if (lsname[lncnt] != lstempString[lncnt])
+            //                        //        {
+            //                        //            lbfoundName = false;
+            //                        //            break;
+            //                        //        }
+            //                        //   }
+            //                        //    if (lbfoundName)
+            //                        //    {
+            //                        //        lEmpTemp.List();
+            //                        //        lbFind = true;
+            //                        //    }
+
+            //                        //}
+            //                        List<Employee> EmpRecord = lEmpList.FindAll(x => x.first_Name.Substring(0,lsname.Length)==lsname);
+
+
+            //                        foreach (Employee IobjEmp in EmpRecord)
+            //                            IobjEmp.List();
+            //                        if (EmpRecord.Count != 0)
+            //                        {
+            //                            lbFind = true;
+            //                        }
+            //                        break;
+
+
+            //                    case "2":
+            //                        Console.WriteLine("Enter DOB (MM/DD/YYYY)");
+            //                        DateTime ldDob = DateTime.Parse(Console.ReadLine());
+            //                        foreach (var lEmpTemp in lEmpList)
+            //                        {
+            //                            if (lEmpTemp.birth_date == ldDob)
+            //                            {
+            //                                lEmpTemp.List();
+            //                                lbFind = true;
+            //                                break;
+            //                            }
+            //                        }
+            //                        break;
+
+
+            //                    case "3":
+            //                        Console.WriteLine("Enter Dept ID");
+            //                        int lnDeptID = int.Parse(Console.ReadLine());
+            //                        foreach (var lEmpTemp in lEmpList)
+            //                        {
+            //                            if (lEmpTemp.dept_id == lnDeptID)
+            //                            {
+            //                                lEmpTemp.List();
+            //                                lbFind = true;
+            //                                break;
+            //                            }
+            //                        }
+            //                        break;
+
+
+            //                    case "4":
+            //                        Console.WriteLine("Enter DOB (YYYY)");
+            //                        int lsYear =int.Parse(Console.ReadLine());
+
+            //                        //List<Employee> EmpRecordyear = lEmpList.FindAll(x => x.birth_date.Year == lsYear);
+
+
+            //                        //foreach (Employee IobjEmp in EmpRecordyear)
+            //                        //    IobjEmp.List();
+            //                        //if (EmpRecordyear.Count != 0)
+            //                        //{
+            //                        //    lbFind = true;
+            //                        //}
+            //                        foreach (var lEmpTemp in lEmpList)
+            //                        {
+            //                            string[] IobjDate = lEmpTemp.birth_date.ToString().Split('/');
+            //                            string[] iobjYear = IobjDate[2].Split(' ');
+            //                           // Console.Write(iobjYear[0]);
+            //                            if (int.Parse(iobjYear[0]) == lsYear)
+            //                                lEmpTemp.List();
+            //                        }
+            //                        break;
+
+            //                }
+
+            //                if (!lbFind)
+            //                    Console.WriteLine("Not Found");
+            //                Console.ReadKey();
+            //                break;
+            //            case 4:
+            //                string JsonString = JsonSerializer.Serialize(lEmpList);
+            //                File.WriteAllText(data_Loc, JsonString);
+            //                break;
+
+            //            default:
+            //                lnUserInput = 0;
+            //                break;
+            //        }
+
+            //    } while (lnUserInput!=0);
+
+
+            //}
+            List<Students> lobjStudent = new List<Students> ();
+            bool st = true;
             do
             {
-                Console.Clear();
-                Console.WriteLine("Enter  \n0:Exit\n1:Add Employee\n2:List Employees\n" +
-                    "3:Find Employees\n" +
-                    "4:Save Employee Record\n");
-                 lnUserInput = int.Parse(Console.ReadLine());
-                switch (lnUserInput)
+                Console.WriteLine("1:Add Student");
+                Console.WriteLine("2:Add  Subject");
+                Console.WriteLine("3:Show Student");
+                int choice = int.Parse(Console.ReadLine());
+                switch(choice)
                 {
                     case 1:
-                        Employee lemp = new Employee();
-                        lemp.ReadInput();
-                        if (lEmpList.Count == 0)
-                            lemp.emp_Id = 1;
+                        Students iobjStude  =new Students();
+                        iobjStude.AddStudent();
+                        if (lobjStudent.Count == 0)
+                            iobjStude.rollNumber= 1;
                         else
-                            lemp.emp_Id = lEmpList.Last().emp_Id + 1;
-                        lEmpList.Add(lemp);
+                            iobjStude.rollNumber = lobjStudent.Last().rollNumber + 1;
+                        lobjStudent.Add(iobjStude);
                         break;
                     case 2:
-                        foreach (var lEmpTemp in lEmpList)
-                            lEmpTemp.List();
-                        Console.ReadKey();
+                       
+
                         break;
-
-
                     case 3:
-
-                        Console.WriteLine("Press 1 Find Through First Name");
-                        Console.WriteLine("Press 2 Find Through DOB (MM/DD/YYYY)");
-                        Console.WriteLine("Press 3 Find Through Dept ID");
-                        string  lsChoice = Console.ReadLine();
-                        Employee lempFind = new Employee();
-                        bool lbFind = false;
-                        switch (lsChoice)
-                        {
-
-
-                            case "1":
-                                Console.WriteLine("Enter First Name");
-                                string lsname = Console.ReadLine();
-                                //foreach (var lEmpTemp in lEmpList)
-                                //{
-                                //    string lstempString = lEmpTemp.first_Name;
-                                //    bool lbfoundName = true;
-                                //   for(int lncnt=0; lncnt<lsname.Length; lncnt++)
-                                //   {
-                                //        if (lsname[lncnt] != lstempString[lncnt])
-                                //        {
-                                //            lbfoundName = false;
-                                //            break;
-                                //        }
-                                //   }
-                                //    if (lbfoundName)
-                                //    {
-                                //        lEmpTemp.List();
-                                //        lbFind = true;
-                                //    }
-
-                                //}
-                                List<Employee> EmpRecord = lEmpList.FindAll(x => x.first_Name.Contains(lsname));
-
-
-                                foreach (Employee IobjEmp in EmpRecord)
-                                    IobjEmp.List();
-                                if (EmpRecord.Count != 0)
-                                {
-                                    lbFind = true;
-                                }
-                                break;
-
-
-                            case "2":
-                                Console.WriteLine("Enter DOB (MM/DD/YYYY)");
-                                DateTime ldDob = DateTime.Parse(Console.ReadLine());
-                                foreach (var lEmpTemp in lEmpList)
-                                {
-                                    if (lEmpTemp.birth_date == ldDob)
-                                    {
-                                        lEmpTemp.List();
-                                        lbFind = true;
-                                        break;
-                                    }
-                                }
-                                break;
-
-
-                            case "3":
-                                Console.WriteLine("Enter Dept ID");
-                                int lnDeptID = int.Parse(Console.ReadLine());
-                                foreach (var lEmpTemp in lEmpList)
-                                {
-                                    if (lEmpTemp.dept_id == lnDeptID)
-                                    {
-                                        lEmpTemp.List();
-                                        lbFind = true;
-                                        break;
-                                    }
-                                }
-                                break;
-
-                        }
                         
-                        if (!lbFind)
-                            Console.WriteLine("Not Found");
-                        Console.ReadKey();
-                        break;
-                    case 4:
-                        string JsonString = JsonSerializer.Serialize(lEmpList);
-                        File.WriteAllText(data_Loc, JsonString);
-                        break;
-
-                    default:
-                        lnUserInput = 0;
+                        foreach (var iobjStudents1 in lobjStudent)
+                            {
+                            iobjStudents1.List();
+                            }
                         break;
                 }
 
-            } while (lnUserInput!=0);
-        
-           
+            } while (st);
         }
     }
 }
